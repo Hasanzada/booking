@@ -13,15 +13,16 @@ public class Menu {
         builder.append(" ===========================\n");
         builder.append("|        Booking App        |\n");
         builder.append(" ===========================\n");
-        builder.append("| 1. Show Time Table        |\n");
-        builder.append("| 2. Search for a flight    |\n");
-        builder.append("| 3. Make a booking         |\n");
-        builder.append("| 4. Show my booking        |\n");
-        builder.append("| 5. Cancel my booking      |\n");
-        builder.append("| 6. Log out                |\n");
-        builder.append("| 7. Exit                   |\n");
+        builder.append("| 1. Show Menu              |\n");
+        builder.append("| 2. Show Time Table        |\n");
+        builder.append("| 3. Search for a flight    |\n");
+        builder.append("| 4. Make a booking         |\n");
+        builder.append("| 5. Show my booking        |\n");
+        builder.append("| 6. Cancel my booking      |\n");
+        builder.append("| 7. Log out                |\n");
+        builder.append("| 8. Exit                   |\n");
 
-        System.out.println(builder.toString());;
+        System.out.println(builder.toString());
     }
 
     public static void showFlights(){

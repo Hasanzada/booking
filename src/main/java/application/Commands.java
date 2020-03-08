@@ -27,7 +27,7 @@ public class Commands {
                 case 3:
                     Menu.showSearchedFlight(sc.nextInt());
                     break;
-                case 7: b = false;
+                case 8: b = false;
                 default:
                     break;
             }

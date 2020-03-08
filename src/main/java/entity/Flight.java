@@ -65,6 +65,6 @@ public class Flight implements Serializable {
     @Override
     public String toString() {
         return String.format("id: %d fly from %S to the %s on day: %s and" +
-                " for now there are ony %d seats",id,country,destination,date,seats);
+                " for now there are only %d seats",id,country,destination,date,seats);
     }
 }
