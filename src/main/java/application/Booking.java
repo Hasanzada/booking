@@ -12,6 +12,7 @@ import java.util.Collection;
 
 public class Booking {
     public static void main(String[] args) {
+        Menu.showMenu();
         FlightController controller = new FlightController();
         controller.controlApp();
     }

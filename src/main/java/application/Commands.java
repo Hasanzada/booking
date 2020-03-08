@@ -15,7 +15,8 @@ public class Commands {
 
     public static void commands(){
        Scanner sc = new Scanner(System.in);
-        while (sc.nextInt() < 8) {
+       boolean b = true;
+        while (b) {
             switch (sc.nextInt()) {
                 case 1:
                     Menu.showMenu();
@@ -25,6 +26,8 @@ public class Commands {
                     break;
                 case 3:
                     Menu.showSearchedFlight(sc.nextInt());
+                    break;
+                case 7: b = false;
                 default:
                     break;
             }
