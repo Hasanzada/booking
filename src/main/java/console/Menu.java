@@ -3,9 +3,9 @@ package console;
 public class Menu {
     public static StringBuilder showMenu(){
         StringBuilder builder = new StringBuilder();
-        builder.append("============================\n");
+        builder.append(" ===========================\n");
         builder.append("|        Booking App        |\n");
-        builder.append("============================\n");
+        builder.append(" ===========================\n");
         builder.append("| 1. Show Time Table        |\n");
         builder.append("| 2. Search for a flight    |\n");
         builder.append("| 3. Make a booking         |\n");
