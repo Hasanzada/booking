@@ -12,13 +12,12 @@ import java.util.Collection;
 public class Booking {
     public static void main(String[] args) {
         System.out.println(Menu.showMenu());
-        /*DAO<Flight> dao = new FligtDAO();
-        Collection<Flight> all = dao.getAll();
+
+        //FlightService.writeFile(GenerateFlightFile.getFlights());
+        FlightService flightService = new FlightService();
+        Collection<Flight> all = flightService.getFlights();
         all.forEach(p -> System.out.println(p));
-*/
-        FlightService.writeFile(GenerateFlightFile.getFlights());
-        DAO<Flight> dao = new DAOFlightFile();
-        Collection<Flight> all = dao.getAll();
-        all.forEach(p -> System.out.println(p));
+
+        System.out.println(flightService.getFlight(5));
     }
 }

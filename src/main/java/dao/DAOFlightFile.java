@@ -21,12 +21,11 @@ public class DAOFlightFile implements DAO<Flight> {
 
   @Override
   public Flight get(int id) {
-   /* return getAll()
+    return getAll()
         .stream()
-        .filter(p -> p.id==id)
+        .filter(p -> p.getId()==id)
         .findFirst()
-        .orElseThrow(() -> new RuntimeException("Pizza not found"));*/
-   return null;
+        .orElseThrow(() -> new RuntimeException("not found"));
   }
 
   @Override
