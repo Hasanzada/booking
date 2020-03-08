@@ -1,7 +1,14 @@
 package console;
 
+import controller.FlightController;
+import entity.Flight;
+
+import java.util.Collection;
+
 public class Menu {
-    public static StringBuilder showMenu(){
+    static FlightController controller = new FlightController();
+
+    public static void showMenu(){
         StringBuilder builder = new StringBuilder();
         builder.append(" ===========================\n");
         builder.append("|        Booking App        |\n");
@@ -14,6 +21,17 @@ public class Menu {
         builder.append("| 6. Log out                |\n");
         builder.append("| 7. Exit                   |\n");
 
-        return builder;
+        System.out.println(builder.toString());;
     }
+
+    public static void showFlights(){
+        Collection<Flight> all = controller.getAllFlight();
+        all.forEach(p -> System.out.println(p));
+    }
+
+    public static void showSearchedFlight(int id){
+        System.out.println(controller.getFlight(id));
+    }
+
+
 }

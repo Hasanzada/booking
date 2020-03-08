@@ -1,5 +1,6 @@
 package service;
 
+import dao.DAO;
 import dao.DAOFlightFile;
 import dao.FligtDAO;
 import entity.Flight;
@@ -10,12 +11,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 public class FlightService {
 
-    private final DAOFlightFile dao = new DAOFlightFile();
+    private final DAO<Flight> dao = new DAOFlightFile();
 
     public  Collection<Flight> getFlights(){
             return dao.getAll();
