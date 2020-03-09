@@ -26,6 +26,7 @@ public class Commands {
                     Menu.showFlights();
                     break;
                 case 3:
+                    Menu.showSelectedBooking();
                     Menu.showSearchedFlight(i);
                     break;
                 default:

@@ -10,17 +10,15 @@ public class Menu {
 
     public static void showMenu(){
         StringBuilder builder = new StringBuilder();
-        builder.append(" ===========================\n");
-        builder.append("|        Booking App        |\n");
-        builder.append(" ===========================\n");
-        builder.append("| 1. Show Menu              |\n");
-        builder.append("| 2. Show Time Table        |\n");
-        builder.append("| 3. Search for a flight    |\n");
-        builder.append("| 4. Make a booking         |\n");
-        builder.append("| 5. Show my booking        |\n");
-        builder.append("| 6. Cancel my booking      |\n");
-        builder.append("| 7. Log out                |\n");
-        builder.append("| 8. Exit                   |\n");
+        builder.append(" =============================\n");
+        builder.append("|         Booking App         |\n");
+        builder.append(" =============================\n");
+        builder.append("| 1. Online board             |\n");
+        builder.append("| 2. Show The Flight Info     |\n");
+        builder.append("| 3. Search and book a flight |\n");
+        builder.append("| 4. Cancel my booking        |\n");
+        builder.append("| 5. My flights               |\n");
+        builder.append("| 6. Exit                     |\n");
 
         System.out.println(builder.toString());
     }
@@ -34,5 +32,12 @@ public class Menu {
         System.out.println(controller.getFlight(id));
     }
 
+    public static void showSelectedBooking(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("=========================\n");
+        builder.append("|      your booking      |\n");
+        builder.append("=========================\n");
+        System.out.println(builder.toString());
+    }
 
 }
