@@ -14,7 +14,7 @@ public class FlightService {
     private final DAO<Flight> dao = new DAOFlightFile();
 
     public  Collection<Flight> getFlights(){
-            writeFlightFile(GenerateFlightFile.getFlights());
+            writeFlightFile(Utils.getFlights());
             return dao.getAll();
     }
 
@@ -25,12 +25,6 @@ public class FlightService {
     public static void writeFlightFile(Map<Integer, Flight> flights){
         Utils.writeToFile(flights,"flight.bin");
     }
-
-
-    public static void writeBookingFile(Map<Integer, Flight> flights){
-        Utils.writeToFile(flights,"bookings.bin");
-    }
-
 
 }
 

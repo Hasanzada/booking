@@ -6,9 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class Utils {
 
@@ -36,4 +34,20 @@ public class Utils {
             e.printStackTrace();
         }
     }
+
+    public static Map<Integer, Flight> getFlights(){
+        Map<Integer, Flight> flights = new HashMap<>();
+        for (int i = 1; i <= 25; i++) {
+            Flight flight = new Flight();
+            flight.setCountry(Utils.getRandomCountry());
+            flight.setDate(new Date());
+            flight.setDestination(Utils.getRandomCountry());
+            flight.setId(i);
+            flight.setSeats(Utils.generateRandomNumber());
+            flights.put(flight.getId(), flight);
+        }
+        return flights;
+    }
+
+
 }

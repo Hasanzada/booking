@@ -1,12 +1,15 @@
 package console;
 
+import controller.BookingController;
 import controller.FlightController;
 import entity.Flight;
+import utils.Utils;
 
 import java.util.Collection;
 
 public class Menu {
-    static FlightController controller = new FlightController();
+    static FlightController flightController = new FlightController();
+    static BookingController bookingController = new BookingController();
 
     public static void showMenu(){
         StringBuilder builder = new StringBuilder();
@@ -24,13 +27,13 @@ public class Menu {
     }
 
     public static void showFlights(){
-        Collection<Flight> all = controller.getAllFlight();
+        Collection<Flight> all = flightController.getAllFlight();
         all.forEach(p -> System.out.println(p));
     }
 
     public static void showSearchedFlight(int id){
         Menu.showSelectedBooking();
-        System.out.println(controller.getFlight(id));
+        System.out.println(flightController.getFlight(id));
     }
 
     public static void showSerchedBooking(){
@@ -47,6 +50,11 @@ public class Menu {
         builder.append("|      your flight       |\n");
         builder.append("=========================\n");
         System.out.println(builder.toString());
+    }
+
+    public static void showBookings(){
+        Collection<Flight> all = bookingController.getAllBooking();
+        all.forEach(p -> System.out.println(p));
     }
 
 }

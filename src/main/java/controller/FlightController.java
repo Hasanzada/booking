@@ -19,8 +19,5 @@ public class FlightController {
         return flightService.getFlight(id);
     }
 
-    public void controlApp(){
-        Commands.commands();
-    }
 
 }

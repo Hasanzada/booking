@@ -7,8 +7,12 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 
 public class DAOBookingFile implements DAO<Flight> {
+
+    private HashMap<Integer, Flight> bookings = new HashMap<>();;
+
     @Override
     public Flight get(int id) {
         return getAll()
@@ -20,22 +24,24 @@ public class DAOBookingFile implements DAO<Flight> {
 
     @Override
     public Collection<Flight> getAll() {
-        HashMap<Integer, Flight> flights = new HashMap<>();
+
         try {
             File file = new File("bookings.bin");
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            flights = (HashMap<Integer, Flight>) ois.readObject();
+            bookings = (HashMap<Integer, Flight>) ois.readObject();
             ois.close();
             fis.close();
         } catch (Exception e) {
-            throw new RuntimeException("smth went wrong during flight creation");
+            throw new RuntimeException("smth went wrong during booking creation");
         }
-        return flights.values();
+        return bookings.values();
     }
 
     @Override
     public void create(Flight flight) {
+        bookings = new HashMap<>();
+        bookings.put(bookings.size(), flight);
     }
 
     @Override
