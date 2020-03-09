@@ -26,8 +26,8 @@ public class Commands {
                     Menu.showFlights();
                     break;
                 case 3:
-                    Menu.showSelectedBooking();
-                    Menu.showSearchedFlight(i);
+                    Menu.showSerchedBooking();
+                    Menu.showSearchedFlight(sc.nextInt());
                     break;
                 default:
                     b = false;

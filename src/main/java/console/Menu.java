@@ -29,13 +29,22 @@ public class Menu {
     }
 
     public static void showSearchedFlight(int id){
+        Menu.showSelectedBooking();
         System.out.println(controller.getFlight(id));
+    }
+
+    public static void showSerchedBooking(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("=========================\n");
+        builder.append("| select your flight     |\n");
+        builder.append("=========================\n");
+        System.out.println(builder.toString());
     }
 
     public static void showSelectedBooking(){
         StringBuilder builder = new StringBuilder();
         builder.append("=========================\n");
-        builder.append("|      your booking      |\n");
+        builder.append("|      your flight       |\n");
         builder.append("=========================\n");
         System.out.println(builder.toString());
     }
