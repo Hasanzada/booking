@@ -17,7 +17,8 @@ public class Commands {
        Scanner sc = new Scanner(System.in);
        boolean b = true;
         while (b) {
-            switch (sc.nextInt()) {
+            int i = sc.nextInt();
+            switch (i) {
                 case 1:
                     Menu.showMenu();
                     break;
@@ -25,10 +26,10 @@ public class Commands {
                     Menu.showFlights();
                     break;
                 case 3:
-                    Menu.showSearchedFlight(sc.nextInt());
+                    Menu.showSearchedFlight(i);
                     break;
-                case 8: b = false;
                 default:
+                    b = false;
                     break;
             }
             sc = new Scanner(System.in);
