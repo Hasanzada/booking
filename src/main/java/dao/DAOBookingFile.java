@@ -2,16 +2,13 @@ package dao;
 
 import entity.Flight;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 public class DAOBookingFile implements DAO<Flight> {
 
-    private HashMap<Integer, Flight> bookings = new HashMap<>();;
+    private HashMap<Integer, Flight> bookings = new HashMap<>();
+    private Collection<Flight> myFlights = new ArrayList<>();
 
     @Override
     public Flight get(int id) {
@@ -26,22 +23,33 @@ public class DAOBookingFile implements DAO<Flight> {
     public Collection<Flight> getAll() {
 
         try {
-            File file = new File("bookings.bin");
+            File file = new File("booking.bin");
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            bookings = (HashMap<Integer, Flight>) ois.readObject();
+            myFlights= (Collection<Flight>) ois.readObject();
             ois.close();
             fis.close();
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("smth went wrong during booking creation");
         }
-        return bookings.values();
+        return myFlights;
     }
 
     @Override
     public void create(Flight flight) {
-        bookings = new HashMap<>();
-        bookings.put(bookings.size(), flight);
+
+//        try {
+//            File file = new File("booking.bin");
+//            FileOutputStream fos = new FileOutputStream(file , true);
+//            ObjectOutputStream oos = new ObjectOutputStream(fos);
+//            oos.writeObject(flight);
+//            oos.close();
+//            fos.close();
+//        }catch (IOException e){
+//            e.printStackTrace();
+//            throw new RuntimeException("smth went wrong during flight creation");
+//        }
     }
 
     @Override

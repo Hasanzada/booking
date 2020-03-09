@@ -4,6 +4,7 @@ import entity.Flight;
 import service.BookingService;
 
 import java.util.Collection;
+import java.util.List;
 
 public class BookingController {
 
@@ -19,6 +20,14 @@ public class BookingController {
 
     public void addBooking(Flight flight){
         bookingService.createBook(flight);
+    }
+
+    public void addBookingToList(Flight flight){
+        bookingService.createBookingInList(flight);
+    }
+
+    public List<Flight> flightList () {
+        return bookingService.getAllFlightsList();
     }
 
 }

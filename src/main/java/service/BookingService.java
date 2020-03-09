@@ -2,13 +2,13 @@ package service;
 
 import dao.DAO;
 import dao.DAOBookingFile;
-import dao.DAOFlightFile;
 import entity.Flight;
-import utils.GenerateFlightFile;
-import utils.Utils;
 
 import java.util.Collection;
-import java.util.Map;
+import java.util.List;
+
+import utils.Utils;
+
 
 public class BookingService {
     private final DAO<Flight> dao = new DAOBookingFile();
@@ -25,4 +25,11 @@ public class BookingService {
         dao.create(flight);
     }
 
+    public void createBookingInList(Flight flight) {
+        Utils.addFlight(flight);
+    }
+
+    public List<Flight> getAllFlightsList(){
+        return Utils.getFlightList();
+    }
 }

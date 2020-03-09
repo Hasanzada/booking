@@ -1,13 +1,7 @@
 package application;
 
 import console.Menu;
-import console.ReadCommand;
-import controller.FlightController;
-import entity.Flight;
-import service.FlightService;
 
-import javax.naming.ldap.Control;
-import java.util.Collection;
 import java.util.Scanner;
 
 
@@ -33,6 +27,8 @@ public class Commands {
 
                     break;
                 case 5:
+                    Menu.showSelectedFlights();
+                    Menu.showBookings();
 
                     break;
                 default:

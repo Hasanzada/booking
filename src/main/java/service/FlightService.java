@@ -6,7 +6,6 @@ import entity.Flight;
 import java.util.Collection;
 import java.util.Map;
 
-import utils.GenerateFlightFile;
 import utils.Utils;
 
 public class FlightService {

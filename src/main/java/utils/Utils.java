@@ -2,13 +2,21 @@ package utils;
 
 import entity.Flight;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.*;
 
 public class Utils {
+
+    static ArrayList<Flight> myFlightList = new ArrayList<>();
+
+    public static void addFlight(Flight flight){
+        myFlightList.add(flight);
+        writeBookToFile(myFlightList, "booking.bin");
+    }
+
+    public static List<Flight> getFlightList () {
+        return myFlightList;
+    }
 
     public static String getRandomCountry(){
         List<String> countries = CountryList.getAllCountries();
@@ -21,6 +29,21 @@ public class Utils {
     }
 
     public static void writeToFile(Map<Integer, Flight> flights, String filename){
+        try{
+            File file = new File(filename);
+            if(!file.exists()) {
+                FileOutputStream fos = new FileOutputStream(file);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(flights);
+                oos.close();
+                fos.close();
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeBookToFile(Collection<Flight> flights, String filename){
         try{
             File file = new File(filename);
             if(!file.exists()) {

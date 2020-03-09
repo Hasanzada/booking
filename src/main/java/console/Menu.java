@@ -6,6 +6,7 @@ import entity.Flight;
 import utils.Utils;
 
 import java.util.Collection;
+import java.util.List;
 
 public class Menu {
     static FlightController flightController = new FlightController();
@@ -34,6 +35,7 @@ public class Menu {
     public static void showSearchedFlight(int id){
         Menu.showSelectedBooking();
         System.out.println(flightController.getFlight(id));
+        bookingController.addBookingToList(flightController.getFlight(id));
     }
 
     public static void showSerchedBooking(){
@@ -57,4 +59,11 @@ public class Menu {
         all.forEach(p -> System.out.println(p));
     }
 
+    public static void showSelectedFlights(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("=========================\n");
+        builder.append("|      your flights     |\n");
+        builder.append("=========================\n");
+        System.out.println(builder.toString());
+    }
 }
