@@ -2,22 +2,19 @@ package service;
 
 import dao.DAO;
 import dao.DAOFlightFile;
-import dao.FligtDAO;
 import entity.Flight;
-import utils.GenerateFlightFile;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.Collection;
 import java.util.Map;
+
+import utils.GenerateFlightFile;
+import utils.Utils;
 
 public class FlightService {
 
     private final DAO<Flight> dao = new DAOFlightFile();
 
     public  Collection<Flight> getFlights(){
+            writeFlightFile(GenerateFlightFile.getFlights());
             return dao.getAll();
     }
 
@@ -25,20 +22,15 @@ public class FlightService {
         return dao.get(id);
     }
 
-    public static void writeFile(Map<Integer, Flight> flights){
-        try{
-            File file = new File("fligths.bin");
-            if(!file.exists()) {
-                FileOutputStream fos = new FileOutputStream(file);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(flights);
-                oos.close();
-                fos.close();
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+    public static void writeFlightFile(Map<Integer, Flight> flights){
+        Utils.writeToFile(flights,"flight.bin");
     }
+
+
+    public static void writeBookingFile(Map<Integer, Flight> flights){
+        Utils.writeToFile(flights,"bookings.bin");
+    }
+
 
 }
 

@@ -5,7 +5,7 @@ import entity.Flight;
 import service.FlightService;
 
 import java.util.Collection;
-import java.util.List;
+
 
 public class FlightController {
 

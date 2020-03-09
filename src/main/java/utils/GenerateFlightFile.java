@@ -13,7 +13,7 @@ public class GenerateFlightFile {
 
     public static Map<Integer, Flight> getFlights(){
         Map<Integer, Flight> flights = new HashMap<>();
-        for (int i = 1; i <= 30; i++) {
+        for (int i = 1; i <= 25; i++) {
             Flight flight = new Flight();
             flight.setCountry(Utils.getRandomCountry());
             flight.setDate(new Date());

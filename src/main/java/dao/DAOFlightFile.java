@@ -20,29 +20,23 @@ public class DAOFlightFile implements DAO<Flight> {
 
   @Override
   public Collection<Flight> getAll() {
-    HashMap<Integer, Flight> flights = new HashMap<>();
+    HashMap<Integer, Flight> flights;
     try {
-      File file = new File("fligths.bin");
+      File file = new File("flight.bin");
       FileInputStream fis = new FileInputStream(file);
       ObjectInputStream ois = new ObjectInputStream(fis);
       flights = (HashMap<Integer, Flight>) ois.readObject();
       ois.close();
       fis.close();
     } catch (Exception e) {
-      throw new RuntimeException("smth went wrong during pizza creation");
+      e.printStackTrace();
+      throw new RuntimeException("smth went wrong during flight creation");
     }
     return  flights.values();
   }
 
   @Override
   public void create(Flight flight) {
-    try {
-      ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("flight.bin")));
-      oos.write(flight.getId());
-      oos.writeObject(flight.getCountry());
-    } catch (IOException e) {
-      throw new RuntimeException("smth went wrong during pizza creation");
-    }
   }
 
   @Override
