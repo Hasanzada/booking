@@ -18,6 +18,7 @@ public class Commands {
                     break;
                 case 2:
                     Menu.showFlights();
+                    Menu.showMenu();
                     break;
                 case 3:
                     Menu.showSerchedBooking();
@@ -31,8 +32,11 @@ public class Commands {
                     Menu.showBookings();
 
                     break;
-                default:
+                case 6:
                     b = false;
+                default:
+                    System.out.println("choose 1-6");
+                    Menu.showMenu();
                     break;
             }
             sc = new Scanner(System.in);
