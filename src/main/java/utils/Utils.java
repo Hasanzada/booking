@@ -46,13 +46,11 @@ public class Utils {
     public static void writeBookToFile(Collection<Flight> flights, String filename){
         try{
             File file = new File(filename);
-           // if(!file.exists()) {
                 FileOutputStream fos = new FileOutputStream(file);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(flights);
                 oos.close();
                 fos.close();
-           // }
         }catch (IOException e){
             e.printStackTrace();
         }

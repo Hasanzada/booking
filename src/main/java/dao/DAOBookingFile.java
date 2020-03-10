@@ -39,17 +39,6 @@ public class DAOBookingFile implements DAO<Flight> {
     @Override
     public void create(Flight flight) {
 
-//        try {
-//            File file = new File("booking.bin");
-//            FileOutputStream fos = new FileOutputStream(file , true);
-//            ObjectOutputStream oos = new ObjectOutputStream(fos);
-//            oos.writeObject(flight);
-//            oos.close();
-//            fos.close();
-//        }catch (IOException e){
-//            e.printStackTrace();
-//            throw new RuntimeException("smth went wrong during flight creation");
-//        }
     }
 
     @Override

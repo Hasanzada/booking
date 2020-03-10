@@ -18,6 +18,4 @@ public class FlightController {
     public Flight getFlight(int id){
         return flightService.getFlight(id);
     }
-
-
 }
