@@ -3,10 +3,8 @@ package console;
 import controller.BookingController;
 import controller.FlightController;
 import entity.Flight;
-import utils.Utils;
 
 import java.util.Collection;
-import java.util.List;
 
 public class Menu {
     static FlightController flightController = new FlightController();
@@ -35,7 +33,7 @@ public class Menu {
     public static void showSearchedFlight(int id){
         Menu.showSelectedBooking();
         System.out.println(flightController.getFlight(id));
-        bookingController.addBooking(flightController.getFlight(id));
+        //bookingController.addBooking(flightController.getFlight(id));
     }
 
     public static void showSerchedBooking(){
@@ -54,10 +52,10 @@ public class Menu {
         System.out.println(builder.toString());
     }
 
-    public static void showBookings(){
+   /* public static void showBookings(){
         Collection<Flight> all = bookingController.getAllBooking();
         all.forEach(p -> System.out.println(p));
-    }
+    }*/
 
     public static void showSelectedFlights(){
         StringBuilder builder = new StringBuilder();

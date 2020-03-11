@@ -1,6 +1,5 @@
 package controller;
 
-import application.Commands;
 import entity.Flight;
 import service.FlightService;
 
@@ -14,6 +13,8 @@ public class FlightController {
     public Collection<Flight> getAllFlight(){
         return flightService.getFlights();
     }
+
+
 
     public Flight getFlight(int id){
         return flightService.getFlight(id);

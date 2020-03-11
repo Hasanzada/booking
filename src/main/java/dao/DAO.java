@@ -1,10 +1,13 @@
 package dao;
 
 import java.util.Collection;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 public interface DAO<A> {
-    A get(int id);
     Collection<A> getAll();
-    void create(A a);
+    Collection<A> getAllBy(Predicate<A> p);
+    Optional<A> get(int id);
+    void create(A data);
     void delete(int id);
 }

@@ -2,7 +2,6 @@ package utils;
 
 import entity.Flight;
 
-import java.io.*;
 import java.util.*;
 
 public class Utils {
@@ -16,34 +15,13 @@ public class Utils {
         return (int)(Math.random()*100);
     }
 
-    public static void writeToFile(Map<Integer, Flight> flights, String filename){
-        try{
-            File file = new File(filename);
-            if(!file.exists()) {
-                FileOutputStream fos = new FileOutputStream(file);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(flights);
-                oos.close();
-                fos.close();
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    public static Map<Integer, Flight> getFlights(){
-        Map<Integer, Flight> flights = new HashMap<>();
-        for (int i = 1; i <= 25; i++) {
-            Flight flight = new Flight();
-            flight.setCountry(Utils.getRandomCountry());
-            flight.setDate(new Date());
-            flight.setDestination(Utils.getRandomCountry());
-            flight.setId(i);
-            flight.setSeats(Utils.generateRandomNumber());
-            flights.put(flight.getId(), flight);
+    public static Collection<Flight> getFlights(){
+        Collection<Flight> flights = new ArrayList<>();
+        for (int i = 1; i <= 30; i++) {
+            Flight flight = new Flight(i, getRandomCountry(),getRandomCountry(),new Date(), generateRandomNumber());
+            flights.add(flight);
         }
         return flights;
     }
-
 
 }

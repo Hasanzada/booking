@@ -1,15 +1,12 @@
 package controller;
 
-import entity.Flight;
 import service.BookingService;
-
-import java.util.Collection;
-import java.util.List;
 
 public class BookingController {
 
     BookingService bookingService = new BookingService();
 
+/*
     public Collection<Flight> getAllBooking(){
         return bookingService.getBookings();
     }
@@ -21,5 +18,6 @@ public class BookingController {
     public void addBooking(Flight flight){
         bookingService.createBook(flight);
     }
+*/
 
 }

@@ -29,7 +29,7 @@ public class Commands {
                     break;
                 case 5:
                     Menu.showSelectedFlights();
-                    Menu.showBookings();
+                    //Menu.showBookings();
 
                     break;
                 case 6:

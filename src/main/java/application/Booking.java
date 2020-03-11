@@ -2,7 +2,6 @@ package application;
 
 import console.Menu;
 import controller.Controller;
-import controller.FlightController;
 
 
 public class Booking {

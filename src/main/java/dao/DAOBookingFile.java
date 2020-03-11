@@ -2,16 +2,17 @@ package dao;
 
 import entity.Flight;
 
-import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
-public class DAOBookingFile implements DAO<Flight> {
+public class DAOBookingFile {
 
     private HashMap<Integer, Flight> bookings = new HashMap<>();
     private Collection<Flight> myFlights = new ArrayList<>();
 
-    @Override
-    public Flight get(int id) {
+    /*@Override
+    public Optional<A> get(int id) {
         return getAll()
                 .stream()
                 .filter(p -> p.getId() == id)
@@ -20,7 +21,12 @@ public class DAOBookingFile implements DAO<Flight> {
     }
 
     @Override
-    public Collection<Flight> getAll() {
+    public void create(A data) {
+
+    }
+
+    @Override
+    public Collection<A> getAll() {
 
         try {
             File file = new File("booking.bin");
@@ -33,6 +39,11 @@ public class DAOBookingFile implements DAO<Flight> {
             return new ArrayList<>();
         }
         return myFlights;
+    }
+
+    @Override
+    public Collection<A> getAllBy(Predicate<A> p) {
+        return null;
     }
 
     @Override
@@ -59,5 +70,5 @@ public class DAOBookingFile implements DAO<Flight> {
     @Override
     public void delete(int id) {
 
-    }
+    }*/
 }
