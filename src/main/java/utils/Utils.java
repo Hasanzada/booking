@@ -6,18 +6,6 @@ import java.io.*;
 import java.util.*;
 
 public class Utils {
-
-    static ArrayList<Flight> myFlightList = new ArrayList<>();
-
-    public static void addFlight(Flight flight){
-        myFlightList.add(flight);
-        writeBookToFile(myFlightList, "booking.bin");
-    }
-
-    public static List<Flight> getFlightList () {
-        return myFlightList;
-    }
-
     public static String getRandomCountry(){
         List<String> countries = CountryList.getAllCountries();
         Random r = new Random();
@@ -38,19 +26,6 @@ public class Utils {
                 oos.close();
                 fos.close();
             }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    public static void writeBookToFile(Collection<Flight> flights, String filename){
-        try{
-            File file = new File(filename);
-                FileOutputStream fos = new FileOutputStream(file);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(flights);
-                oos.close();
-                fos.close();
         }catch (IOException e){
             e.printStackTrace();
         }

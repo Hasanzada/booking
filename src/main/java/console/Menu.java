@@ -35,7 +35,7 @@ public class Menu {
     public static void showSearchedFlight(int id){
         Menu.showSelectedBooking();
         System.out.println(flightController.getFlight(id));
-        bookingController.addBookingToList(flightController.getFlight(id));
+        bookingController.addBooking(flightController.getFlight(id));
     }
 
     public static void showSerchedBooking(){

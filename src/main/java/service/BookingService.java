@@ -25,11 +25,4 @@ public class BookingService {
         dao.create(flight);
     }
 
-    public void createBookingInList(Flight flight) {
-        Utils.addFlight(flight);
-    }
-
-    public List<Flight> getAllFlightsList(){
-        return Utils.getFlightList();
-    }
 }

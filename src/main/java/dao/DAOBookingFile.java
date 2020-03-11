@@ -29,16 +29,31 @@ public class DAOBookingFile implements DAO<Flight> {
             myFlights= (Collection<Flight>) ois.readObject();
             ois.close();
             fis.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("smth went wrong during booking creation");
+        } catch (IOException | ClassNotFoundException ex) {
+            return new ArrayList<>();
         }
         return myFlights;
     }
 
     @Override
     public void create(Flight flight) {
+        Collection<Flight> flightCollection = getAll();
+        flightCollection.add(flight);
+        write(flightCollection);
 
+    }
+
+    private void write(Collection<Flight> flightCollection) {
+        try{
+            File file = new File("booking.bin");
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(flightCollection);
+            oos.close();
+            fos.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     @Override

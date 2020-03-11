@@ -22,12 +22,4 @@ public class BookingController {
         bookingService.createBook(flight);
     }
 
-    public void addBookingToList(Flight flight){
-        bookingService.createBookingInList(flight);
-    }
-
-    public List<Flight> flightList () {
-        return bookingService.getAllFlightsList();
-    }
-
 }
