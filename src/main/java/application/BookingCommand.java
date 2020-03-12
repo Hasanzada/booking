@@ -51,10 +51,10 @@ public class BookingCommand {
                 String surname = sc.nextLine();
                 passengers.add( new Passenger(p_id++,name,surname));
             }
+            Menu.showBookingAccepted();
             return  new Booking(++booking_id,passengers,flight_id);
 
         } else {
-            Menu.showMenu();
             return null;
         }
     }

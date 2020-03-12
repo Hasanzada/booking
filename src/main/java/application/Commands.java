@@ -20,7 +20,6 @@ public class Commands {
             int i = sc.nextInt();
             switch (i) {
                 case 1:
-                    Menu.showMenu();
                     break;
                 case 2:
                     Menu.showFlights();
