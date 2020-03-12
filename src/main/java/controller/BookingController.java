@@ -1,23 +1,33 @@
 package controller;
 
+import entity.Booking;
 import service.BookingService;
+
+import java.util.Collection;
 
 public class BookingController {
 
     BookingService bookingService = new BookingService();
 
-/*
-    public Collection<Flight> getAllBooking(){
+    public Collection<Booking> getAllBooking(){
         return bookingService.getBookings();
     }
 
-    public Flight getBook(int id){
-        return bookingService.getBook(id);
+    public Collection<Booking> getAllBookingBy(){
+        return bookingService.getBookings();
     }
 
-    public void addBooking(Flight flight){
-        bookingService.createBook(flight);
+
+    public Booking getBook(int id){
+        return bookingService.getBooking(id);
     }
-*/
+
+    public void addBooking(Booking booking){
+        bookingService.create(booking);
+    }
+
+    public void deleteBooking(int id){
+        bookingService.delete(id);
+    }
 
 }

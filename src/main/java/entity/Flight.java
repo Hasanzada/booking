@@ -1,19 +1,19 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Date;
+
 
 public class Flight implements Serializable, Identifiable {
 
     final int id;
     final String country;
     final String destination;
-    final Date date;
+    final String date;
     final int seats;
 
     private static final long serialVersionUID = 1L;
 
-    public Flight(int id, String country, String destination, Date date, int seats) {
+    public Flight(int id, String country, String destination, String date, int seats) {
         this.id = id;
         this.country = country;
         this.destination = destination;
@@ -23,6 +23,14 @@ public class Flight implements Serializable, Identifiable {
 
     public long getId() {
         return this.id;
+    }
+
+    public String getCity() {
+        return destination;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     @Override

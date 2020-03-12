@@ -1,19 +1,42 @@
 package service;
 
 
+import dao.DAO;
+import dao.DAOAbstractFileBin;
+import entity.Booking;
+import entity.Flight;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.function.Predicate;
+
 public class BookingService {
-    //private final DAO<Flight> dao = new DAOBookingFile();
+    private final DAO<Booking> dao = new DAOAbstractFileBin("bookings.bin");
 
-    /*public Collection<Flight> getBookings() {
+
+    public Collection<Booking> getBookings(){
         return dao.getAll();
-    }*/
+    }
 
-    //public Flight getBook(int id) {
-//        return dao.get(id);
-//    }
 
-    /*public void createBook(Flight flight) {
-        dao.create(flight);
-    }*/
+
+    public Booking getBooking(int id){
+        return dao.get(id).get();
+    }
+
+    public void create(Booking booking){
+        dao.create(booking);
+    }
+
+    public void delete(int id){
+        dao.delete(id);
+    }
+
+    public List<Flight> getAllBy(Predicate p){
+        return (List<Flight>) dao.getAllBy(p);
+    }
+
+
+
 
 }
