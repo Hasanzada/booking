@@ -25,12 +25,12 @@ public class UserService {
 
     public User getUserByUsernameAndPasssword(String username, String password){
         return users().stream().
-                filter(p -> (p.getLogin().equals(username) && p.getPassword().equals(password))).
+                filter(p -> (p.getLogin().equals(username) && p.getPassword().equals(password.trim()))).
                 findFirst().get();
     }
 
     public boolean checkUserByUsernameAndPasssword(String username, String password){
         return users().stream().
-                anyMatch(p -> (p.getLogin().equals(username) && p.getPassword().equals(password)));
+                anyMatch(p -> (p.getLogin().equalsIgnoreCase(username) && p.getPassword().equals(password.trim())));
     }
 }

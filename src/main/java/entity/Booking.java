@@ -7,14 +7,14 @@ public class Booking implements Identifiable, Serializable {
     private long id;
     final List<Passenger> passengers;
     final int flight_id;
-    //final int user_id;
+    long user_id;
 
     private static final long serialVersionUID = 2L;
 
-    public Booking(List<Passenger> passengers, int flight_id/*, int user_id*/) {
+    public Booking(List<Passenger> passengers, int flight_id, long user_id) {
         this.passengers = passengers;
         this.flight_id = flight_id;
-        //this.user_id = user_id;
+        this.user_id = user_id;
     }
 
     @Override
@@ -24,6 +24,10 @@ public class Booking implements Identifiable, Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getUser_id() {
+        return user_id;
     }
 
     @Override

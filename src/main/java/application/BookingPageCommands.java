@@ -12,7 +12,7 @@ public class BookingPageCommands {
     private static final FlightController flightController = new FlightController();
     private static final BookingController bookingController = new BookingController();
     private static final Scanner sc = new Scanner(System.in);
-    public static void commands(){
+    public static void commands(long user_id){
        MenuBooking.showMenu();
        flightController.genearate();
        boolean b = true;
@@ -25,7 +25,7 @@ public class BookingPageCommands {
                     MenuBooking.showFlights();
                     break;
                 case 3:
-                    BookingCommand.searchFlight();
+                    BookingCommand.searchFlight(user_id);
                     break;
                 case 4:
                     System.out.println("select id which you want to delete");
@@ -34,7 +34,7 @@ public class BookingPageCommands {
                     break;
                 case 5:
                     MenuBooking.showSelectedFlights();
-                    MenuBooking.showBookings();
+                    MenuBooking.showBookings(user_id);
                     break;
                 case 6:
                     b = false;

@@ -54,8 +54,8 @@ public class MenuBooking {
         System.out.println(builder.toString());
     }
 
-    public static void showBookings(){
-        Collection<Booking> all = bookingController.getAllBooking();
+    public static void showBookings(long user_id){
+        Collection<Booking> all = bookingController.getAllBookingBy(user_id);
         all.forEach(p -> System.out.println(p));
     }
 
