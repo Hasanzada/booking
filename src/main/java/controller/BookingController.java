@@ -23,6 +23,7 @@ public class BookingController {
     }
 
     public void addBooking(Booking booking){
+
         bookingService.create(booking);
     }
 

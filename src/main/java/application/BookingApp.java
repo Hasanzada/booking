@@ -1,12 +1,11 @@
 package application;
 
-import console.Menu;
+import console.MenuBooking;
 import controller.Controller;
 
 
 public class BookingApp {
     public static void main(String[] args) {
-        Menu.showMenu();
         Controller controller = new Controller();
         controller.controlApp();
 

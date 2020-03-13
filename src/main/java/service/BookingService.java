@@ -25,6 +25,8 @@ public class BookingService {
     }
 
     public void create(Booking booking){
+        long id = dao.getAll().size() + 1;
+        booking.setId(id);
         dao.create(booking);
     }
 
