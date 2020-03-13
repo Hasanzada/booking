@@ -15,10 +15,13 @@ public class BookingCommand {
         Scanner sc = new Scanner(System.in);
         System.out.println("enter city");
         String city = sc.nextLine();
+
         System.out.println("enter date");
         String sdate = sc.nextLine();
+
         System.out.println("ticket count");
         int ticket_count = sc.nextInt();
+
         MenuBooking.showSearchedFlight(city, sdate);
         MenuBooking.showBookingYesNo();
 
