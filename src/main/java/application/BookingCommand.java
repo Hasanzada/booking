@@ -1,6 +1,6 @@
 package application;
 
-import console.Menu;
+import console.MenuBooking;
 import controller.BookingController;
 import entity.Booking;
 import entity.Passenger;
@@ -19,8 +19,8 @@ public class BookingCommand {
         String sdate = sc.nextLine();
         System.out.println("ticket count");
         int ticket_count = sc.nextInt();
-        Menu.showSearchedFlight(city, sdate);
-        Menu.showBookingYesNo();
+        MenuBooking.showSearchedFlight(city, sdate);
+        MenuBooking.showBookingYesNo();
 
         if(sc.hasNextLine()){
             Booking booking = orderBooking(sc.nextInt(),ticket_count);
@@ -29,9 +29,9 @@ public class BookingCommand {
                 bookingController.addBooking(booking);
             }
         }else{
-            Menu.showBookingAccepted();
+            MenuBooking.showBookingAccepted();
             System.out.println("-----------------");
-            Menu.showMenu();
+            MenuBooking.showMenu();
         }
     }
 
@@ -51,10 +51,10 @@ public class BookingCommand {
                 String surname = sc.nextLine();
                 passengers.add( new Passenger(p_id++,name,surname));
             }
-            return  new Booking(++booking_id,passengers,flight_id);
+            return  new Booking(passengers,flight_id);
 
         } else {
-            Menu.showMenu();
+            MenuBooking.showMenu();
             return null;
         }
     }

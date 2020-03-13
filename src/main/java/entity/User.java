@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class User implements Serializable, Identifiable {
     final int id;
-    final String login;
-    final String password;
+    private final String login;
+    private final String password;
 
     private static final long serialVersionUID = 4L;
 
@@ -18,6 +18,14 @@ public class User implements Serializable, Identifiable {
     @Override
     public long getId() {
         return id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     @Override
