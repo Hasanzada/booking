@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class BookingCommand {
 
-    public static void searchFlight() {
+    public static void searchFlight(long user_id) {
         Scanner sc = new Scanner(System.in);
         System.out.println("enter city");
         String city = sc.nextLine();
@@ -23,7 +23,7 @@ public class BookingCommand {
         MenuBooking.showBookingYesNo();
 
         if(sc.hasNextLine()){
-            Booking booking = orderBooking(sc.nextInt(),ticket_count);
+            Booking booking = orderBooking(sc.nextInt(),ticket_count,user_id);
             if(booking != null){
                 BookingController bookingController = new BookingController();
                 bookingController.addBooking(booking);
@@ -35,8 +35,7 @@ public class BookingCommand {
         }
     }
 
-    static int booking_id;
-    public static Booking orderBooking(int k, int ticket_count) {
+    public static Booking orderBooking(int k, int ticket_count, long user_id) {
         int p_id = 1;
         if (k == 1) {
             System.out.println("Enter flight id");
@@ -51,7 +50,7 @@ public class BookingCommand {
                 String surname = sc.nextLine();
                 passengers.add( new Passenger(p_id++,name,surname));
             }
-            return  new Booking(passengers,flight_id);
+            return  new Booking(passengers,flight_id,user_id);
 
         } else {
             MenuBooking.showMenu();

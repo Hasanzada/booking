@@ -9,12 +9,13 @@ public class BookingController {
 
     BookingService bookingService = new BookingService();
 
-    public Collection<Booking> getAllBooking(){
+    /*public Collection<Booking> getAllBooking(){
         return bookingService.getBookings();
-    }
 
-    public Collection<Booking> getAllBookingBy(){
-        return bookingService.getBookings();
+    }*/
+
+    public Collection<Booking> getAllBookingBy(long user_id){
+        return bookingService.getBookings(user_id);
     }
 
 

@@ -14,10 +14,9 @@ public class BookingService {
     private final DAO<Booking> dao = new DAOAbstractFileBin("bookings.bin");
 
 
-    public Collection<Booking> getBookings(){
-        return dao.getAll();
+    public Collection<Booking> getBookings(long user_id){
+        return dao.getAllBy(p -> p.getUser_id()==user_id);
     }
-
 
 
     public Booking getBooking(int id){

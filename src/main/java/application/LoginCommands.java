@@ -18,7 +18,8 @@ public class LoginCommands {
         String password = sc.nextLine();
         if(userController.checkUser(name,password)){
             System.out.println("Log in is successfully");
-            BookingPageCommands.commands();
+            long user_id = userController.getUserByNameAndPassword(name,password).getId();
+            BookingPageCommands.commands(user_id);
         }else {
             System.out.println("your log in is wrong");
 
