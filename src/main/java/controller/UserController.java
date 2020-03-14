@@ -2,9 +2,7 @@ package controller;
 
 import entity.User;
 import service.UserService;
-
 import java.util.Collection;
-import java.util.List;
 
 public class UserController {
 

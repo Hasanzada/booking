@@ -1,20 +1,18 @@
 package application;
 
-import console.MenuBooking;
 import console.MenuLogIn;
 import controller.BookingController;
 import controller.FlightController;
 
 import java.util.Scanner;
 
-
 public class LogInPageCommands {
 
     private static FlightController flightController = new FlightController();
     private static BookingController bookingController = new BookingController();
     private static final Scanner sc = new Scanner(System.in);
-    public static void commands(){
 
+    public static void commands() {
         MenuLogIn.showLogInMenu();
         boolean b = true;
         while (b) {
@@ -38,6 +36,5 @@ public class LogInPageCommands {
             if (b)
                 MenuLogIn.showLogInMenu();
         }
-
     }
 }

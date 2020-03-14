@@ -12,48 +12,60 @@ public class LoginCommands {
     private static final Scanner sc = new Scanner(System.in);
     private static final UserController userController = new UserController();
 
-    public static void logIn(){
+    public static void logIn() {
         System.out.println("Username: ");
         String name = sc.nextLine();
         System.out.println("Password: ");
         String password = sc.nextLine();
 
-        if(userController.checkUser(name,password)){
-            System.out.println("Log in is successfully");
-            long user_id = userController.getUserByNameAndPassword(name,password).getId();
+        if (userController.checkUser(name, password)) {
+            MenuLogIn.successfullyLogin();
+            long user_id = userController.getUserByNameAndPassword(name, password).getId();
             BookingPageCommands.commands(user_id);
-        }else {
+        } else {
             System.out.println("your log in is wrong");
-
         }
     }
 
-    public static void createAccount(){
-        System.out.println("Username: ");
+    public static void createAccount() {
+        long user_id = userController.getAll().size() + 1;
+        User user = new User(user_id, getUsername(), getPassword());
+        userController.addUser(user);
+        MenuLogIn.successfullyCreatedLogin();
+    }
+
+    public static String getUsername() {
+        System.out.println("username: ");
         String name = sc.nextLine();
 
-        if(!Validator.getValidUser(name) ) {
+        while ((!Validator.getValidation(name)) || userController.checkUserByLogin(name)) {
+            if (!Validator.getValidation(name)) {
+                System.out.println("username must be equal or greater than 5 characters and less than 20 characters");
+            }
+            if (userController.checkUserByLogin(name)) {
+                System.out.println("this username is already taken");
+            }
+            System.out.println("try new username: ");
             name = sc.nextLine();
         }
-        if(userController.checkUserByLogin(name)){
-            System.out.println("this username is available, please try new username");
-            System.out.println("Username: ");
-            name = sc.nextLine();
-        }
-        System.out.println("Password: ");
+        return name;
+    }
+
+    public static String getPassword() {
+        System.out.println("password: ");
         String password = sc.nextLine();
 
-        if(!Validator.getValidPassword(password)) {
+        while (!Validator.getValidation(password)) {
+            System.out.println("password must be equal or greater than 5 characters and less than 20 characters");
+            System.out.println("try new password");
             password = sc.nextLine();
         }
-        System.out.println("again, Password: ");
+        System.out.println("repeat of password: ");
         String password_again = sc.nextLine();
-        if(password.equals(password_again)){
-            long user_id = userController.getAll().size() + 1;
-            User user = new User(user_id,name,password);
-            userController.addUser(user);
-        }else
-            MenuLogIn.showLogInMenu();
 
+        if (!(password.equals(password_again))) {
+            System.out.println("repeat of password is wrong enter passwords again");
+            return getPassword();
+        } else return password;
     }
 }

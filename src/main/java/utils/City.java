@@ -20,5 +20,4 @@ public enum City {
     LONDON,
     VIENNA,
     BUDAPESHT
-
 }

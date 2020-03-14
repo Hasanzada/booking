@@ -6,7 +6,6 @@ import controller.FlightController;
 
 import java.util.Scanner;
 
-
 public class BookingPageCommands {
 
     private static final FlightController flightController = new FlightController();
@@ -43,9 +42,8 @@ public class BookingPageCommands {
                     System.out.println("choose 1-6");
                     break;
             }
-            if(b)
+            if (b)
                 MenuBooking.showMenu();
         }
-
     }
 }

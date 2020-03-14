@@ -9,27 +9,19 @@ public class BookingController {
 
     BookingService bookingService = new BookingService();
 
-    /*public Collection<Booking> getAllBooking(){
-        return bookingService.getBookings();
-
-    }*/
-
-    public Collection<Booking> getAllBookingBy(long user_id){
+    public Collection<Booking> getAllBookingBy(long user_id) {
         return bookingService.getBookings(user_id);
     }
 
-
-    public Booking getBook(int id){
+    public Booking getBook(int id) {
         return bookingService.getBooking(id);
     }
 
-    public void addBooking(Booking booking){
-
+    public void addBooking(Booking booking) {
         bookingService.create(booking);
     }
 
-    public void deleteBooking(int id){
+    public void deleteBooking(int id) {
         bookingService.delete(id);
     }
-
 }

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CountryList {
-    public static List<String> getAllCountries(){
+    public static List<String> getAllCountries() {
         List<String> countries = new ArrayList<String>();
-        for(City city : City.values()){
+        for (City city : City.values()) {
             countries.add(city.name());
         }
         return countries;

@@ -3,6 +3,7 @@ package service;
 import dao.DAO;
 import dao.DAOAbstractFileBin;
 import entity.User;
+
 import java.util.Collection;
 
 
@@ -14,31 +15,30 @@ public class UserService {
         return dao.get(user_id).get();
     }
 
-    public Collection<User>getAllUsers(){
+    public Collection<User> getAllUsers() {
         return dao.getAll();
     }
 
-    public void createUser(User user){
+    public void createUser(User user) {
         dao.create(user);
     }
 
-    public Collection<User> users(){
+    public Collection<User> users() {
         return dao.getAll();
     }
 
-    public User getUserByUsernameAndPasssword(String username, String password){
+    public User getUserByUsernameAndPasssword(String username, String password) {
         return users().stream().
                 filter(p -> (p.getLogin().equals(username) && p.getPassword().equals(password.trim()))).
                 findFirst().get();
     }
 
-    public boolean checkUserByUsernameAndPasssword(String username, String password){
+    public boolean checkUserByUsernameAndPasssword(String username, String password) {
         return users().stream().
                 anyMatch(p -> (p.getLogin().equals(username) && p.getPassword().equals(password.trim())));
     }
 
-    public boolean checkUserByUsername(String name){
+    public boolean checkUserByUsername(String name) {
         return users().stream().anyMatch(p -> p.getLogin().equals(name));
     }
-
 }

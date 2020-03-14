@@ -30,6 +30,6 @@ public class User implements Serializable, Identifiable {
 
     @Override
     public String toString() {
-        return String.format("id: %d login %S ",id,login);
+        return String.format("id: %d login %S ", id, login);
     }
 }

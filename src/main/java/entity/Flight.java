@@ -36,8 +36,6 @@ public class Flight implements Serializable, Identifiable {
     @Override
     public String toString() {
         return String.format("|id:%2d |%-10s |%-10s | %s " +
-                "|seats: %2d|",id,city,destination,date,seats);
+                "|seats: %2d|", id, city, destination, date, seats);
     }
-
-
 }
