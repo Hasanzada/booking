@@ -15,6 +15,10 @@ public class UserService {
         return dao.get(user_id).get();
     }
 
+    public Collection<User>getAllUsers(){
+        return dao.getAll();
+    }
+
     public void createUser(User user){
         dao.create(user);
     }
