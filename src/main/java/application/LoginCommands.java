@@ -9,7 +9,6 @@ public class LoginCommands {
 
     private static final Scanner sc = new Scanner(System.in);
     private static final UserController userController = new UserController();
-    private static int id;
 
     public static void logIn(){
         System.out.println("Username: ");
@@ -19,6 +18,7 @@ public class LoginCommands {
         if(userController.checkUser(name,password)){
             System.out.println("Log in is successfully");
             long user_id = userController.getUserByNameAndPassword(name,password).getId();
+            System.out.println("user_id " + user_id);
             BookingPageCommands.commands(user_id);
         }else {
             System.out.println("your log in is wrong");
@@ -34,7 +34,8 @@ public class LoginCommands {
         System.out.println("again, Password: ");
         String password_again = sc.nextLine();
         if(password.equals(password_again)){
-            User user = new User(++id,name,password);
+            long user_id = userController.getAll().size() + 1;
+            User user = new User(user_id,name,password);
             userController.addUser(user);
         }else
             createAccount();
