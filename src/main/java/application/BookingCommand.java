@@ -22,19 +22,15 @@ public class BookingCommand {
         System.out.println("ticket count");
         int ticket_count = sc.nextInt();
 
-        MenuBooking.showSearchedFlight(city, sdate);
-        MenuBooking.showBookingYesNo();
-
-        if(sc.hasNextLine()){
-            Booking booking = orderBooking(sc.nextInt(),ticket_count,user_id);
-            if(booking != null){
-                BookingController bookingController = new BookingController();
-                bookingController.addBooking(booking);
+        if(MenuBooking.showSearchedFlight(city, sdate)){
+            if(sc.hasNextLine()){
+                Booking booking = orderBooking(sc.nextInt(),ticket_count,user_id);
+                if(booking != null){
+                    BookingController bookingController = new BookingController();
+                    bookingController.addBooking(booking);
+                    MenuBooking.showBookingAccepted();
+                }
             }
-        }else{
-            MenuBooking.showBookingAccepted();
-            System.out.println("-----------------");
-            MenuBooking.showMenu();
         }
     }
 
@@ -47,16 +43,15 @@ public class BookingCommand {
             List<Passenger> passengers = new ArrayList<>();
             for (int i = 0; i < ticket_count; i++) {
                 sc = new Scanner(System.in);
-                System.out.printf("enter %d.passenger name ",i+1);
+                System.out.printf("enter %d.passenger name: ",i+1);
                 String name = sc.nextLine();
-                System.out.printf("enter %d.passenger surname ",i+1);
+                System.out.printf("enter %d.passenger surname: ",i+1);
                 String surname = sc.nextLine();
                 passengers.add( new Passenger(p_id++,name,surname));
             }
             return  new Booking(passengers,flight_id,user_id);
 
         } else {
-            MenuBooking.showMenu();
             return null;
         }
     }

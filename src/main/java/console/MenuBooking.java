@@ -32,10 +32,16 @@ public class MenuBooking {
         all.forEach(p -> System.out.println(p));
     }
 
-    public static void showSearchedFlight(String city, String date){
-        MenuBooking.showSelectedBooking();
-        System.out.println(flightController.flightsByCityAndDate(city,date));
-        //bookingController.addBooking(flightController.getFlight(id));
+    public static boolean showSearchedFlight(String city, String date){
+        if (flightController.flightsByCityAndDate(city, date).size() == 0) {
+            System.out.println("There is no flight as you want, if you want to search again please type 3");
+            return false;
+        } else {
+            MenuBooking.showSelectedBooking();
+            System.out.println(flightController.flightsByCityAndDate(city, date));
+            showBookingYesNo();
+            return true;
+        }
     }
 
     public static void showSerchedBooking(){
