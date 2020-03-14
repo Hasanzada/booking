@@ -31,8 +31,8 @@ public class FlightService {
         return dao.get(id).get();
     }
 
-    public Collection<Flight> flightsByCityAndDate(String city, String date){
-        return dao.getAllBy(p -> (p.getCity().equals(city) && p.getDate().equals(date)));
+    public Collection<Flight> flightsByCityAndDate(String destination, String date){
+        return dao.getAllBy(p -> (p.getDestination().equalsIgnoreCase(destination) && p.getDate().equals(date)));
     }
 
     public void create(Flight flight){

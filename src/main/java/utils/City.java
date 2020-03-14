@@ -1,6 +1,6 @@
 package utils;
 
-public enum Country {
+public enum City {
     BAKU,
     ANKARA,
     KIEV,
