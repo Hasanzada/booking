@@ -17,26 +17,26 @@ public class BookingPageCommands {
        flightController.genearate();
        boolean b = true;
         while (b) {
-            int i = sc.nextInt();
-            switch (i) {
-                case 1:
+            String decision = sc.nextLine();
+            switch (decision) {
+                case "1":
                     break;
-                case 2:
+                case "2":
                     MenuBooking.showFlights();
                     break;
-                case 3:
+                case "3":
                     BookingCommand.searchFlight(user_id);
                     break;
-                case 4:
+                case "4":
                     System.out.println("select id which you want to delete");
                     int id = sc.nextInt();
                     bookingController.deleteBooking(id);
                     break;
-                case 5:
+                case "5":
                     MenuBooking.showSelectedFlights();
                     MenuBooking.showBookings(user_id);
                     break;
-                case 6:
+                case "6":
                     b = false;
                     break;
                 default:

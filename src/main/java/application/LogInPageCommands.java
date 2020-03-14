@@ -18,17 +18,17 @@ public class LogInPageCommands {
         MenuLogIn.showLogInMenu();
         boolean b = true;
         while (b) {
-            int i = sc.nextInt();
-            switch (i) {
-                case 1:
+            String decision = sc.nextLine();
+            switch (decision) {
+                case "1":
                     MenuLogIn.showLogIn();
                     LoginCommands.logIn();
                     break;
-                case 2:
+                case "2":
                     MenuLogIn.showRegister();
                     LoginCommands.createAccount();
                     break;
-                case 3:
+                case "3":
                     b = false;
                     break;
                 default:
