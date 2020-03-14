@@ -17,10 +17,6 @@ public class Passenger implements Serializable {
 
     @Override
     public String toString() {
-        return "Passenger{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                '}';
+        return String.format("%d.%s %s",id, name, surname);
     }
 }

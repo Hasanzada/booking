@@ -47,9 +47,9 @@ public class BookingCommand {
             List<Passenger> passengers = new ArrayList<>();
             for (int i = 0; i < ticket_count; i++) {
                 sc = new Scanner(System.in);
-                System.out.println("enter passenger name ");
+                System.out.printf("enter %d.passenger name ",i+1);
                 String name = sc.nextLine();
-                System.out.println("enter passenger surname ");
+                System.out.printf("enter %d.passenger surname ",i+1);
                 String surname = sc.nextLine();
                 passengers.add( new Passenger(p_id++,name,surname));
             }

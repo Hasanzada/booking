@@ -32,6 +32,6 @@ public class Booking implements Identifiable, Serializable {
 
     @Override
     public String toString() {
-        return String.format("id: %d flight %d passenger %s",id,flight_id, passengers);
+        return String.format("id:%d. flight id:%d. passengers %s",id,flight_id, passengers);
     }
 }
