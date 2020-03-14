@@ -36,4 +36,9 @@ public class UserService {
         return users().stream().
                 anyMatch(p -> (p.getLogin().equals(username) && p.getPassword().equals(password.trim())));
     }
+
+    public boolean checkUserByUsername(String name){
+        return users().stream().anyMatch(p -> p.getLogin().equals(name));
+    }
+
 }

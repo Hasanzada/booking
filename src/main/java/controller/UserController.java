@@ -26,6 +26,10 @@ public class UserController {
         return userService.checkUserByUsernameAndPasssword(username,password);
     }
 
+    public boolean checkUserByLogin(String login){
+        return userService.checkUserByUsername(login);
+    }
+
     public void addUser(User user){
         userService.createUser(user);
     }
