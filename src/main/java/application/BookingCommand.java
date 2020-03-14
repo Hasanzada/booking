@@ -2,6 +2,7 @@ package application;
 
 import console.MenuBooking;
 import controller.BookingController;
+import controller.FlightController;
 import entity.Booking;
 import entity.Passenger;
 
@@ -54,5 +55,21 @@ public class BookingCommand {
         } else {
             return null;
         }
+    }
+
+    public static void deleteBooking () {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("select id which you want to delete");
+        int id = sc.nextInt();
+        BookingController bookingController = new BookingController();
+        bookingController.deleteBooking(id);
+    }
+
+    public static void showFlight() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter flight id: ");
+        int id = sc.nextInt();
+        FlightController flightController = new FlightController();
+        System.out.println(flightController.getFlightById(id));
     }
 }

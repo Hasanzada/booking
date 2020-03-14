@@ -48,5 +48,7 @@ public class FlightService {
     }
 
 
-
+    public String getFlightById(int id) {
+        return dao.get(id).map(Flight::toString).orElse("There is no Flight with that id");
+    }
 }

@@ -12,25 +12,25 @@ public class BookingPageCommands {
     private static final FlightController flightController = new FlightController();
     private static final BookingController bookingController = new BookingController();
     private static final Scanner sc = new Scanner(System.in);
-    public static void commands(long user_id){
-       MenuBooking.showMenu();
-       flightController.genearate();
-       boolean b = true;
+
+    public static void commands(long user_id) {
+        MenuBooking.showMenu();
+        flightController.genearate();
+        boolean b = true;
         while (b) {
             String decision = sc.nextLine();
             switch (decision) {
                 case "1":
+                    MenuBooking.showFlights();
                     break;
                 case "2":
-                    MenuBooking.showFlights();
+                    BookingCommand.showFlight();
                     break;
                 case "3":
                     BookingCommand.searchFlight(user_id);
                     break;
                 case "4":
-                    System.out.println("select id which you want to delete");
-                    int id = sc.nextInt();
-                    bookingController.deleteBooking(id);
+                    BookingCommand.deleteBooking();
                     break;
                 case "5":
                     MenuBooking.showSelectedFlights();

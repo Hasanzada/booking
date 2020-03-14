@@ -26,4 +26,7 @@ public class FlightController {
     public Flight getFlight(int id){
         return flightService.getFlight(id);
     }
+
+    public String getFlightById(int id) { return flightService.getFlightById(id);
+    }
 }
