@@ -76,7 +76,6 @@ public class MenuBooking {
         System.out.println(builder.toString());
     }
 
-
     public static void showBookingAccepted() {
         builder.delete(0,builder.length());
         builder.append("=========================\n");
