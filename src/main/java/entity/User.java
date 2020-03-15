@@ -1,5 +1,7 @@
 package entity;
 
+import dao.Identifiable;
+
 import java.io.Serializable;
 
 public class User implements Serializable, Identifiable {

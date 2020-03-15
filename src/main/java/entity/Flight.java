@@ -1,11 +1,13 @@
 package entity;
 
+import dao.Identifiable;
+
 import java.io.Serializable;
 
 
 public class Flight implements Serializable, Identifiable {
 
-    final int id;
+    final long id;
     final String city;
     final String destination;
     final String date;
@@ -13,7 +15,7 @@ public class Flight implements Serializable, Identifiable {
 
     private static final long serialVersionUID = 1L;
 
-    public Flight(int id, String city, String destination, String date, int seats) {
+    public Flight(long id, String city, String destination, String date, int seats) {
         this.id = id;
         this.city = city;
         this.destination = destination;

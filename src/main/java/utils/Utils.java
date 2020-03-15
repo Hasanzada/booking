@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class Utils {
     public static String getRandomCountry() {
-        List<String> countries = CountryList.getAllCountries();
+        List<String> countries = CityList.getAllCountries();
         Random r = new Random();
         return countries.get((int) (Math.random() * countries.size()));
     }

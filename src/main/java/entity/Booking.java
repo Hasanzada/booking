@@ -1,17 +1,19 @@
 package entity;
 
+import dao.Identifiable;
+
 import java.io.Serializable;
 import java.util.List;
 
 public class Booking implements Identifiable, Serializable {
     private long id;
     final List<Passenger> passengers;
-    final int flight_id;
+    final long flight_id;
     long user_id;
 
     private static final long serialVersionUID = 2L;
 
-    public Booking(List<Passenger> passengers, int flight_id, long user_id) {
+    public Booking(List<Passenger> passengers, long flight_id, long user_id) {
         this.passengers = passengers;
         this.flight_id = flight_id;
         this.user_id = user_id;

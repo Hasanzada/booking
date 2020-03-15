@@ -1,17 +1,15 @@
-package dao;
+package service;
 
 import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public interface DAO<A> {
-    Collection<A> getAll();
-
-    Collection<A> getAllBy(Predicate<A> p);
+public interface Service<A> {
 
     Optional<A> get(long id);
-
-    void create(A data);
-
+    Collection<A>getAll();
+    Collection<A> getAllBy(Predicate<A> p);
+    void create(A a);
     void delete(long id);
+
 }
