@@ -4,6 +4,7 @@ import dao.Identifiable;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 public class Booking implements Identifiable, Serializable {
     private long id;
@@ -17,6 +18,22 @@ public class Booking implements Identifiable, Serializable {
         this.passengers = passengers;
         this.flight_id = flight_id;
         this.user_id = user_id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Booking)) return false;
+        Booking booking = (Booking) o;
+        return getId() == booking.getId() &&
+                flight_id == booking.flight_id &&
+                getUser_id() == booking.getUser_id() &&
+                Objects.equals(passengers, booking.passengers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), passengers, flight_id, getUser_id());
     }
 
     @Override

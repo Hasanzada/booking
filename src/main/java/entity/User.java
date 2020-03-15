@@ -3,6 +3,7 @@ package entity;
 import dao.Identifiable;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class User implements Serializable, Identifiable {
     final long id;
@@ -15,6 +16,21 @@ public class User implements Serializable, Identifiable {
         this.id = id;
         this.login = login;
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return getId() == user.getId() &&
+                Objects.equals(getLogin(), user.getLogin()) &&
+                Objects.equals(getPassword(), user.getPassword());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getLogin(), getPassword());
     }
 
     @Override

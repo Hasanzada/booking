@@ -3,6 +3,7 @@ package entity;
 import dao.Identifiable;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 
 public class Flight implements Serializable, Identifiable {
@@ -21,6 +22,23 @@ public class Flight implements Serializable, Identifiable {
         this.destination = destination;
         this.date = date;
         this.seats = seats;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Flight)) return false;
+        Flight flight = (Flight) o;
+        return getId() == flight.getId() &&
+                seats == flight.seats &&
+                Objects.equals(city, flight.city) &&
+                Objects.equals(getDestination(), flight.getDestination()) &&
+                Objects.equals(getDate(), flight.getDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), city, getDestination(), getDate(), seats);
     }
 
     public long getId() {
