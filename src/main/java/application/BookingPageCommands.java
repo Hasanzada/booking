@@ -29,6 +29,7 @@ public class BookingPageCommands {
                     BookingCommand.searchFlight(user_id);
                     break;
                 case "4":
+                    MenuBooking.showBookings(user_id);
                     BookingCommand.deleteBooking();
                     break;
                 case "5":
