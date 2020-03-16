@@ -20,6 +20,10 @@ public class BookingCommand {
         System.out.println("enter date");
         String sdate = sc.nextLine();
         System.out.println("ticket count");
+        while (!sc.hasNextInt()){
+            System.out.println("enter a number not letters, ticket count:");
+            sc.next();
+        }
         int ticket_count = sc.nextInt();
 
         if (MenuBooking.showSearchedFlight(city, sdate)) {
