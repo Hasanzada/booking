@@ -60,7 +60,7 @@ public class BookingCommand {
         System.out.println("select id which you want to delete");
         int id = sc.nextInt();
         BookingController bookingController = new BookingController();
-        bookingController.deleteBooking(id,user_id);
+        System.out.println(bookingController.deleteBooking(id,user_id)? "cancelled successfully":"there is no booking with that id");
     }
 
     public static void showFlight() {

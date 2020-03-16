@@ -30,10 +30,13 @@ public class BookingController {
     }
 
 
-    public void deleteBooking(long id, long user_id) {
+    public boolean deleteBooking(long id, long user_id) {
+        boolean b = getAllBookingBy(user_id).stream()
+                .anyMatch(p -> p.getId() == id);
         deleteBooking(getAllBookingBy(user_id).stream()
                 .filter(p->p.getId()==id)
-                .findFirst().get()
-                .getId());
+                .findFirst().map(Booking::getId)
+                .orElse(0L));
+        return b;
     }
 }
