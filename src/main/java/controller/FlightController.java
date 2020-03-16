@@ -40,7 +40,7 @@ public class FlightController {
     }
 
     public Collection<Flight> flightsByCityAndDate(String city, String date){
-        return service.getAllBy(p -> (p.getDestination().equals(city) && p.getDate().equals(date)));
+        return service.getAllBy(p -> (p.getDestination().equalsIgnoreCase(city) && p.getDate().equals(date)));
     }
 
     public Flight getFlight(int id){
