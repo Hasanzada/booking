@@ -30,7 +30,7 @@ public class BookingPageCommands {
                     break;
                 case "4":
                     MenuBooking.showBookings(user_id);
-                    BookingCommand.deleteBooking();
+                    BookingCommand.deleteBooking(user_id);
                     break;
                 case "5":
                     MenuBooking.showSelectedFlights();

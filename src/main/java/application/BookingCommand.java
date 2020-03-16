@@ -55,12 +55,12 @@ public class BookingCommand {
         }
     }
 
-    public static void deleteBooking() {
+    public static void deleteBooking(long user_id) {
         Scanner sc = new Scanner(System.in);
         System.out.println("select id which you want to delete");
         int id = sc.nextInt();
         BookingController bookingController = new BookingController();
-        bookingController.deleteBooking(id);
+        bookingController.deleteBooking(id,user_id);
     }
 
     public static void showFlight() {

@@ -25,8 +25,15 @@ public class BookingController {
         service.create(booking);
     }
 
-    public void deleteBooking(int id){
+    public void deleteBooking(long id){
         service.delete(id);
     }
 
+
+    public void deleteBooking(long id, long user_id) {
+        deleteBooking(getAllBookingBy(user_id).stream()
+                .filter(p->p.getId()==id)
+                .findFirst().get()
+                .getId());
+    }
 }
