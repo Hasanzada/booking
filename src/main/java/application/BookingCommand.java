@@ -27,13 +27,15 @@ public class BookingCommand {
         int ticket_count = sc.nextInt();
 
         if (MenuBooking.showSearchedFlight(city, sdate)) {
-            if (sc.hasNextLine()) {
-                Booking booking = orderBooking(sc.nextInt(), ticket_count, user_id);
-                if (booking != null) {
-                    BookingController bookingController = new BookingController();
-                    bookingController.addBooking(booking);
-                    MenuBooking.showBookingAccepted();
-                }
+            while (!sc.hasNextInt()) {
+                System.out.println("enter a number 1-2");
+                sc.next();
+            }
+            Booking booking = orderBooking(sc.nextInt(), ticket_count, user_id);
+            if (booking != null) {
+                BookingController bookingController = new BookingController();
+                bookingController.addBooking(booking);
+                MenuBooking.showBookingAccepted();
             }
         }
     }
@@ -43,6 +45,10 @@ public class BookingCommand {
         if (k == 1) {
             System.out.println("Enter flight id");
             Scanner sc = new Scanner(System.in);
+            while (!sc.hasNextInt()) {
+                System.out.println("enter a number not letters, flight id:");
+                sc.next();
+            }
             int flight_id = sc.nextInt();
             List<Passenger> passengers = new ArrayList<>();
             for (int i = 0; i < ticket_count; i++) {
@@ -62,6 +68,10 @@ public class BookingCommand {
     public static void deleteBooking(long user_id) {
         Scanner sc = new Scanner(System.in);
         System.out.println("select id which you want to delete");
+        while (!sc.hasNextInt()) {
+            System.out.println("enter a number not letters, id:");
+            sc.next();
+        }
         int id = sc.nextInt();
         BookingController bookingController = new BookingController();
         System.out.println(bookingController.deleteBooking(id,user_id)? "cancelled successfully":"there is no booking with that id");
@@ -70,6 +80,10 @@ public class BookingCommand {
     public static void showFlight() {
         Scanner sc = new Scanner(System.in);
         System.out.println("enter flight id: ");
+        while (!sc.hasNextInt()) {
+            System.out.println("enter a number not letters, flight id:");
+            sc.next();
+        }
         int id = sc.nextInt();
         FlightController flightController = new FlightController();
         System.out.println(flightController.getFlightById(id));
