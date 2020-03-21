@@ -22,10 +22,12 @@ public class Utils {
 
     public static Flight getFlights(int id) {
         Collection<Flight> flights = new ArrayList<>();
-        Flight flight = new Flight(id, getRandomCountry(), getRandomCountry(), LocalDateTime.now()
-                .plusHours((int) (Math.random() * 24 + 1))
-                .format(DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy")), generateRandomNumber());
-
+        Flight flight = new Flight(id, getRandomCountry(), getRandomCountry(),
+                LocalDateTime.now()
+                        .plusHours((int) (Math.random() * 72 + 1))
+                        .format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
+                String.format("%02d:%02d",(int)(Math.random()*24),(int)(Math.random()*4)*15),
+                generateRandomNumber());
         return flight;
     }
 }

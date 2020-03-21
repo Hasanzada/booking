@@ -38,7 +38,7 @@ class ServiceAbstractTest {
         user = new User(1, "abcde","12345");
         passenger = new Passenger(1, "Zara", "Larsson");
         passengers.add(passenger);
-        flight = new Flight(1, "Kiev", "Donesk", "20:42 21-03-2020", 50);
+        flight = new Flight(1, "Kiev", "Donesk", "10-10-2020", "20:00", 50);
         booking = new Booking(passengers, 1,2);
         booking.setId(1);
     }
@@ -53,8 +53,8 @@ class ServiceAbstractTest {
     @Test
     void get02() {
         file.delete();
-        Flight flight2 = new Flight(2, "Kiev", "Donesk", "20:42 22-03-2020", 50);
-        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "15:00 22-03-2020", 50);
+        Flight flight2 = new Flight(2, "Kiev", "Donesk", "10-10-2020", "20:00", 50);
+        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "10-10-2020", "20:00", 50);
         flightService.create(flight2);
         flightService.create(flight3);
         assertEquals(flight3, flightService.get(3).get());
@@ -63,7 +63,7 @@ class ServiceAbstractTest {
     @Test
     void get03() {
         file.delete();
-        Flight flight2 = new Flight(2, "Kiev", "Donesk", "20:42 22-03-2020", 50);
+        Flight flight2 = new Flight(2, "Kiev", "Donesk", "10-10-2020", "20:00", 50);
         flightService.create(flight2);
         assertEquals(flight2, flightService.get(2).get());
     }
@@ -96,7 +96,7 @@ class ServiceAbstractTest {
     @Test
     void getAll01() {
         file.delete();
-        Flight flight2 = new Flight(2, "Kiev", "Donesk", "20:42 22-03-2020", 50);
+        Flight flight2 = new Flight(2, "Kiev", "Donesk", "10-10-2020", "20:00", 50);
         Collection<Flight> flightCollection = new ArrayList<>();
         flightCollection.add(flight);
         flightCollection.add(flight2);
@@ -108,7 +108,7 @@ class ServiceAbstractTest {
     @Test
     void getAll02() {
         file.delete();
-        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "15:00 22-03-2020", 50);
+        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "10-10-2020", "20:00", 50);
         Collection<Flight> flightCollection = new ArrayList<>();
         flightCollection.add(flight);
         flightCollection.add(flight3);
@@ -120,7 +120,7 @@ class ServiceAbstractTest {
     @Test
     void getAll03() {
         file.delete();
-        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "15:00 22-03-2020", 50);
+        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "10-10-2020", "20:00", 50);
         Collection<Flight> flightCollection = new ArrayList<>();
         flightCollection.add(flight3);
         flightService.create(flight3);
@@ -197,11 +197,11 @@ class ServiceAbstractTest {
     void getAllBy01() {
         file.delete();
         List<Flight> flights = new ArrayList<>();
-        flights.add(new Flight(1,"Brasil","Manchester","15:30 20-10-2020",100));
-        flights.add(new Flight(2,"Praga","Manchester","15:30 20-10-2020",75));
+        flights.add(new Flight(1,"Brasil","Manchester","10-10-2020", "20:00", 100));
+        flights.add(new Flight(2,"Praga","Manchester","10-10-2020", "20:00", 75));
 
-        flightService.create(new Flight(1,"Brasil","Manchester","15:30 20-10-2020",100));
-        flightService.create(new Flight(2,"Praga","Manchester","15:30 20-10-2020",75));
+        flightService.create(new Flight(1,"Brasil","Manchester","10-10-2020", "20:00", 100));
+        flightService.create(new Flight(2,"Praga","Manchester","10-10-2020", "20:00", 75));
 
         assertEquals(flights, flightService.getAllBy(p -> p.getDestination().equals("Manchester")));
     }
@@ -210,10 +210,10 @@ class ServiceAbstractTest {
     void getAllBy02() {
         file.delete();
         List<Flight> flights = new ArrayList<>();
-        flights.add(new Flight(1,"Brasil","Manchester","15:30 20-10-2020",100));
+        flights.add(new Flight(1,"Brasil","Manchester","10-10-2020", "20:00", 100));
 
-        flightService.create(new Flight(1,"Brasil","Manchester","15:30 20-10-2020",100));
-        flightService.create(new Flight(2,"Praga","London","15:30 20-10-2020",75));
+        flightService.create(new Flight(1,"Brasil","Manchester","10-10-2020", "20:00", 100));
+        flightService.create(new Flight(2,"Praga","London","10-10-2020", "20:00", 75));
 
         assertEquals(flights, flightService.getAllBy(p -> p.getDestination().equals("Manchester")));
     }
@@ -221,7 +221,7 @@ class ServiceAbstractTest {
     @Test
     void create01() {
         file.delete();
-        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "15:00 22-03-2020", 50);
+        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "10-10-2020", "20:00", 50);
         flightService.create(flight3);
         assertEquals(flight3.getId(),flightService.get(3).get().getId());
     }
@@ -229,8 +229,8 @@ class ServiceAbstractTest {
     @Test
     void create02() {
         file.delete();
-        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "15:00 22-03-2020", 50);
-        Flight flight1 = new Flight(1, "Madrid", "Canada", "15:00 22-03-2020", 50);
+        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "10-10-2020", "20:00", 50);
+        Flight flight1 = new Flight(1, "Madrid", "Canada", "10-10-2020", "20:00", 50);
         flightService.create(flight3);
         flightService.create(flight1);
         assertEquals(flight1.getId(),flightService.get(1).get().getId());
@@ -240,9 +240,9 @@ class ServiceAbstractTest {
     void create03() {
         file.delete();
         List<Flight> flights = new ArrayList<>();
-        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "15:00 22-03-2020", 50);
-        Flight flight1 = new Flight(1, "Madrid", "Canada", "15:00 22-03-2020", 50);
-        Flight flight2 = new Flight(1, "Madrid", "Canada", "15:00 22-03-2020", 50);
+        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "10-10-2020", "20:00", 50);
+        Flight flight1 = new Flight(1, "Madrid", "Canada", "10-10-2020", "20:00", 50);
+        Flight flight2 = new Flight(1, "Madrid", "Canada", "10-10-2020", "20:00", 50);
         flights.add(flight1);
         flights.add(flight3);
         flightService.create(flight1);
@@ -292,8 +292,8 @@ class ServiceAbstractTest {
     @Test
     void delete01() {
         file.delete();
-        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "15:00 22-03-2020", 50);
-        Flight flight1 = new Flight(1, "Madrid", "Canada", "15:00 22-03-2020", 50);
+        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "10-10-2020", "20:00", 50);
+        Flight flight1 = new Flight(1, "Madrid", "Canada", "10-10-2020", "20:00", 50);
         flightService.create(flight3);
         flightService.delete(3);
         assertEquals(Optional.empty(),flightService.get(3));
@@ -303,8 +303,8 @@ class ServiceAbstractTest {
     void delete02() {
         file.delete();
         List<Flight> flights = new ArrayList<>();
-        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "15:00 22-03-2020", 50);
-        Flight flight1 = new Flight(1, "Madrid", "Istanbul", "15:00 22-03-2020", 50);
+        Flight flight3 = new Flight(3, "Moscow", "Istanbul", "10-10-2020", "20:00", 50);
+        Flight flight1 = new Flight(1, "Madrid", "Istanbul", "10-10-2020", "20:00", 50);
         flights.add(flight3);
         flightService.create(flight3);
         flightService.create(flight1);

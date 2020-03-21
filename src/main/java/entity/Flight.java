@@ -12,15 +12,17 @@ public class Flight implements Serializable, Identifiable {
     final String city;
     final String destination;
     final String date;
+    final String time;
     final int seats;
 
     private static final long serialVersionUID = 1L;
 
-    public Flight(long id, String city, String destination, String date, int seats) {
+    public Flight(long id, String city, String destination, String date, String time, int seats) {
         this.id = id;
         this.city = city;
         this.destination = destination;
         this.date = date;
+        this.time = time;
         this.seats = seats;
     }
 
@@ -33,7 +35,8 @@ public class Flight implements Serializable, Identifiable {
                 seats == flight.seats &&
                 Objects.equals(city, flight.city) &&
                 Objects.equals(getDestination(), flight.getDestination()) &&
-                Objects.equals(getDate(), flight.getDate());
+                Objects.equals(getDate(), flight.getDate()) &&
+                Objects.equals(getTime(), flight.getTime());
     }
 
     @Override
@@ -53,9 +56,11 @@ public class Flight implements Serializable, Identifiable {
         return date;
     }
 
+    public String getTime() { return time; }
+
     @Override
     public String toString() {
-        return String.format("|id:%2d |%-10s |%-10s | %s " +
-                "|seats: %2d|", id, city, destination, date, seats);
+        return String.format("|id:%2d |%-10s |%-10s | %s %s" +
+                "|seats: %2d|", id, city, destination, date, time, seats);
     }
 }

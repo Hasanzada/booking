@@ -39,7 +39,7 @@ public class MenuBooking {
             return false;
         } else {
             MenuBooking.showSelectedBooking();
-            System.out.println(flightController.flightsByCityAndDate(city, date));
+            flightController.flightsByCityAndDate(city, date).forEach(System.out::println);
             showBookingYesNo();
             return true;
         }

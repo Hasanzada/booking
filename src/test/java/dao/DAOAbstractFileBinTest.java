@@ -4,7 +4,6 @@ import entity.Booking;
 import entity.Flight;
 import entity.Passenger;
 import entity.User;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +24,7 @@ class DAOAbstractFileBinTest {
     Booking booking;
     User user;
     Passenger passenger;
-    List<Passenger>passengers = new ArrayList<>();
+    List<Passenger> passengers = new ArrayList<>();
     File file ;
 
     @BeforeEach
@@ -37,7 +36,7 @@ class DAOAbstractFileBinTest {
 
         passenger = new Passenger(1,"John","Snow");
         passengers.add(passenger);
-        flight = new Flight(1,"Baku","Ankara","20:42 10-10-2020",75);
+        flight = new Flight(1,"Baku","Ankara","10-10-2020", "20:00", 75);
         booking = new Booking(passengers,2,3);
         booking.setId(1);
         user = new User(1,"admin","admin123");
@@ -47,12 +46,12 @@ class DAOAbstractFileBinTest {
 
     @Test
     void getAll() {
-        Collection<Flight>flights = new ArrayList<>();
+        Collection<Flight> flights = new ArrayList<>();
         flights.add(flight);
-        flights.add(new Flight(2,"IZMIR","PEKIN","20:42 10-10-2020",65));
+        flights.add(new Flight(2,"IZMIR","PEKIN","10-10-2020", "20:00", 65));
 
         daoFlight.create(flight);
-        daoFlight.create(new Flight(2,"IZMIR","PEKIN","20:42 10-10-2020",65));
+        daoFlight.create(new Flight(2,"IZMIR","PEKIN","10-10-2020", "20:00", 65));
 
         assertEquals(flights, (List<Flight>)daoFlight.getAll());
         file.delete();
@@ -61,15 +60,14 @@ class DAOAbstractFileBinTest {
     @Test
     void getAllBy() {
         file.delete();
-        List<Flight>flights = new ArrayList<>();
-        flights.add(new Flight(2,"IZMIR","PEKIN","20:42 10-10-2020",65));
-        flights.add(new Flight(3,"TEBRIZ","PEKIN","20:42 10-10-2020",75));
+        List<Flight> flights = new ArrayList<>();
+        flights.add(new Flight(2,"IZMIR","PEKIN","10-10-2020", "20:00", 65));
+        flights.add(new Flight(3,"TEBRIZ","PEKIN","10-10-2020", "20:00", 75));
 
-        daoFlight.create(new Flight(2,"IZMIR","PEKIN","20:42 10-10-2020",65));
-        daoFlight.create(new Flight(3,"TEBRIZ","PEKIN","20:42 10-10-2020",75));
+        daoFlight.create(new Flight(2,"IZMIR","PEKIN","10-10-2020", "20:00", 65));
+        daoFlight.create(new Flight(3,"TEBRIZ","PEKIN","10-10-2020", "20:00", 75));
 
         assertEquals(flights, daoFlight.getAllBy(p -> p.getDestination().equals("PEKIN")));
-
     }
 
 
@@ -99,19 +97,19 @@ class DAOAbstractFileBinTest {
 
         file.delete();
         daoBooking.create(booking);
-        List<Booking>bookings = (List<Booking>) daoBooking.getAll();
+        List<Booking> bookings = (List<Booking>) daoBooking.getAll();
         assertEquals(booking.getId(), bookings.get(0).getId());
 
         file.delete();
         daoUser.create(user);
-        List<User>users = (List<User>) daoUser.getAll();
+        List<User> users = (List<User>) daoUser.getAll();
         assertEquals(user.getLogin(), users.get(0).getLogin());
     }
 
     @Test
     void delete() {
         file.delete();
-        daoFlight.create(new Flight(2,"ISTANBUL","MOSKVA","20:32 11-10-2020",55));
+        daoFlight.create(new Flight(2,"ISTANBUL","MOSKVA","10-10-2020", "20:00", 55));
         daoFlight.delete(2);
         assertEquals(Optional.empty(), daoFlight.get(2));
 
