@@ -12,7 +12,6 @@ import java.util.Random;
 public class Utils {
     public static String getRandomCountry() {
         List<String> countries = CityList.getAllCountries();
-        Random r = new Random();
         return countries.get((int) (Math.random() * countries.size()));
     }
 
@@ -21,7 +20,6 @@ public class Utils {
     }
 
     public static Flight getFlights(int id) {
-        Collection<Flight> flights = new ArrayList<>();
         Flight flight = new Flight(id, getRandomCountry(), getRandomCountry(),
                 LocalDateTime.now()
                         .plusHours((int) (Math.random() * 72 + 1))

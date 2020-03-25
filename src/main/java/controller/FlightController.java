@@ -60,7 +60,6 @@ public class FlightController {
     public void saveInFile(){
         service_memory.getAll().stream()
                 .forEach(x -> service.create(x));
-        System.out.println("f " + service_memory.getAll());
     }
 
 
@@ -78,14 +77,11 @@ public class FlightController {
 
     public Collection<Flight> getAllFlight(){
         if(file.exists()){
-            System.out.println("flights " + service_memory.getAll());
             for(Flight flight : service.getAll()){
                 service_memory.create(flight);
             }
-            return service_memory.getAll();
-        }else {
-            return service_memory.getAll();
         }
+        return service_memory.getAll();
 
     }
 

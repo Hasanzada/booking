@@ -29,7 +29,6 @@ public class LoginCommands {
 
     public static void createAccount() {
         long user_id = userController.users().size() + 1;
-        System.out.println("userid "+user_id);
         User user = new User(user_id, getUsername(), getPassword());
         userController.addUser(user);
         MenuLogIn.successfullyCreatedLogin();

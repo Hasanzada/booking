@@ -22,7 +22,6 @@ public class UserController {
     }
 
     private Map<Long,User>users = new HashMap<>();
-    //private Collection<User>userList;
 
     private Service<User> service = new ServiceAbstract("users.bin");
     private Service<User> service_user = new ServiceMemory<>(users);
@@ -34,12 +33,9 @@ public class UserController {
     public Collection<User> users(){
         File file = new File("users.bin");
         if(file.exists()) {
-            //System.out.println("sm all"+service_user.getAll());
             service.getAll().stream().forEach(x->service_user.create(x));
-            return service_user.getAll();
-        }else {
-            return service_user.getAll();
         }
+        return service_user.getAll();
     }
 
     public boolean checkUserByLogin(String login){
@@ -51,12 +47,8 @@ public class UserController {
     }
 
     public void saveInFile(){
-        System.out.println("SDFghf");
-        System.out.println(service_user.getAll());
-        //userList = users();
         for(User user : users()){
             service.create(user);
-            System.out.println("asd "+user);
         }
     }
 

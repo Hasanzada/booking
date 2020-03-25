@@ -37,7 +37,6 @@ public class BookingController {
     public void saveInFile(){
         service_memory.getAll().stream()
                 .forEach(x -> service.create(x));
-        System.out.println("b " + service_memory.getAll());
     }
 
 

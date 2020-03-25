@@ -12,7 +12,6 @@ import java.util.function.Predicate;
 public class ServiceMemory<A> implements Service<A> {
 
     private DAO<A>dao;
-    //private Map<Long, A> list;
     public ServiceMemory(Map<Long,A> list){
         dao = new DAOMemory(list);
     }
