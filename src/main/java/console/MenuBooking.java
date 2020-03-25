@@ -8,8 +8,8 @@ import entity.Flight;
 import java.util.Collection;
 
 public class MenuBooking {
-    static FlightController flightController = new FlightController();
-    static BookingController bookingController = new BookingController();
+    static FlightController flightController = FlightController.getInstance();
+    static BookingController bookingController = BookingController.getInstance();
 
     private static final StringBuilder builder = new StringBuilder();
 
@@ -30,7 +30,7 @@ public class MenuBooking {
 
     public static void showFlights() {
         Collection<Flight> all = flightController.getAllFlight();
-        all.forEach(p -> System.out.println(p));
+        all.forEach(System.out::println);
     }
 
     public static boolean showSearchedFlight(String city, String date) {

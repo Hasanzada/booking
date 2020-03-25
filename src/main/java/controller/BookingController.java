@@ -3,20 +3,46 @@ package controller;
 import entity.Booking;
 import service.Service;
 import service.ServiceAbstract;
+import service.ServiceMemory;
 
+import java.io.File;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BookingController {
 
-    private Service<Booking> service = new ServiceAbstract<>("booking.bin");
+    private static BookingController single_instance = null;
+
+    public static BookingController getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new BookingController();
+        return single_instance;
+    }
+    private File file = new File("booking.bin");
+    private Map<Long, Booking> bookings = new HashMap<>();
+    private Service<Booking> service = new ServiceAbstract("booking.bin");
+    private Service<Booking> service_memory = new ServiceMemory<>(bookings);
 
     public Collection<Booking> getAllBookingBy(long user_id){
-        return service.getAllBy(p -> p.getUser_id() == user_id);
+        if(file.exists()){
+            service.getAll().stream().forEach(x->service_memory.create(x));
+            return service_memory.getAllBy(p -> p.getUser_id() == user_id);
+        }else {
+            return service_memory.getAllBy(p -> p.getUser_id() == user_id);
+        }
+    }
+
+    public void saveInFile(){
+        service_memory.getAll().stream()
+                .forEach(x -> service.create(x));
+        System.out.println("b " + service_memory.getAll());
     }
 
 
     public Booking getBook(long id){
-        return service.get(id).get();
+        return service_memory.get(id).get();
     }
 
     public void addBooking(Booking booking){
@@ -26,7 +52,7 @@ public class BookingController {
     }
 
     public void deleteBooking(long id){
-        service.delete(id);
+        service_memory.delete(id);
     }
 
 

@@ -1,27 +1,25 @@
 package service;
 
 import dao.DAO;
-import dao.DAOAbstractFileBin;
 import dao.DAOMemory;
-import entity.Flight;
+import dao.Identifiable;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
-public class ServiceAbstract<A> implements Service<A> {
+public class ServiceMemory<A> implements Service<A> {
 
-    DAO<A> dao;
-    public ServiceAbstract(String filename){
-        dao = new DAOAbstractFileBin(filename);
+    private DAO<A>dao;
+    //private Map<Long, A> list;
+    public ServiceMemory(Map<Long,A> list){
+        dao = new DAOMemory(list);
     }
-
 
     @Override
     public Optional<A> get(long id) {
-        return  dao.get((int) id);
+        return dao.get(id);
     }
 
     @Override
@@ -45,8 +43,8 @@ public class ServiceAbstract<A> implements Service<A> {
     }
 
     @Override
-    public void update(A a, long id) {
-
+    public void update(A a, long id){
+        dao.update(a, id);
     }
 
 }

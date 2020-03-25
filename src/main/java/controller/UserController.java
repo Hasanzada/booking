@@ -3,20 +3,43 @@ package controller;
 import entity.User;
 import service.Service;
 import service.ServiceAbstract;
+import service.ServiceMemory;
 
+import java.io.File;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserController {
 
+    private static UserController single_instance = null;
 
-    private Service<User> service = new ServiceAbstract<>("users.bin");
+    public static UserController getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new UserController();
+        return single_instance;
+    }
+
+    private Map<Long,User>users = new HashMap<>();
+    //private Collection<User>userList;
+
+    private Service<User> service = new ServiceAbstract("users.bin");
+    private Service<User> service_user = new ServiceMemory<>(users);
 
     public User getUser(int user_id){
-        return service.get(user_id).get();
+        return service_user.get(user_id).get();
     }
 
     public Collection<User> users(){
-        return service.getAll();
+        File file = new File("users.bin");
+        if(file.exists()) {
+            //System.out.println("sm all"+service_user.getAll());
+            service.getAll().stream().forEach(x->service_user.create(x));
+            return service_user.getAll();
+        }else {
+            return service_user.getAll();
+        }
     }
 
     public boolean checkUserByLogin(String login){
@@ -24,7 +47,17 @@ public class UserController {
     }
 
     public void addUser(User user){
-        service.create(user);
+        service_user.create(user);
+    }
+
+    public void saveInFile(){
+        System.out.println("SDFghf");
+        System.out.println(service_user.getAll());
+        //userList = users();
+        for(User user : users()){
+            service.create(user);
+            System.out.println("asd "+user);
+        }
     }
 
     public User getUserByNameAndPassword(String username, String password){

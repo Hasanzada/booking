@@ -12,6 +12,8 @@ import java.util.Scanner;
 
 public class BookingCommand {
 
+    private static FlightController flightController = FlightController.getInstance();
+
     public static void searchFlight(long user_id) {
         Scanner sc = new Scanner(System.in);
 
@@ -33,7 +35,7 @@ public class BookingCommand {
             }
             Booking booking = orderBooking(sc.nextInt(), ticket_count, user_id);
             if (booking != null) {
-                BookingController bookingController = new BookingController();
+                BookingController bookingController = BookingController.getInstance();
                 bookingController.addBooking(booking);
                 MenuBooking.showBookingAccepted();
             }
@@ -59,6 +61,8 @@ public class BookingCommand {
                 String surname = sc.nextLine();
                 passengers.add(new Passenger(p_id++, name, surname));
             }
+            flightController.updateFlight(flight_id, ticket_count);
+
             return new Booking(passengers, flight_id, user_id);
         } else {
             return null;
@@ -73,7 +77,7 @@ public class BookingCommand {
             sc.next();
         }
         int id = sc.nextInt();
-        BookingController bookingController = new BookingController();
+        BookingController bookingController = BookingController.getInstance();
         System.out.println(bookingController.deleteBooking(id,user_id)? "cancelled successfully":"there is no booking with that id");
     }
 
@@ -84,8 +88,7 @@ public class BookingCommand {
             System.out.println("enter a number not letters, flight id:");
             sc.next();
         }
-        int id = sc.nextInt();
-        FlightController flightController = new FlightController();
+        long id = sc.nextLong();
         System.out.println(flightController.getFlightById(id));
     }
 }

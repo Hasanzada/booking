@@ -14,4 +14,6 @@ public interface DAO<A> {
     void create(A data);
 
     void delete(long id);
+
+    void update(A a, long id);
 }

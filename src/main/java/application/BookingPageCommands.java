@@ -3,13 +3,15 @@ package application;
 import console.MenuBooking;
 import controller.BookingController;
 import controller.FlightController;
+import controller.UserController;
 
 import java.util.Scanner;
 
 public class BookingPageCommands {
 
-    private static final FlightController flightController = new FlightController();
-    private static final BookingController bookingController = new BookingController();
+    private static FlightController flightController = FlightController.getInstance();
+    private static BookingController bookingController = BookingController.getInstance();
+    private static UserController userController = UserController.getInstance();
     private static final Scanner sc = new Scanner(System.in);
 
     public static void commands(long user_id) {
@@ -27,6 +29,7 @@ public class BookingPageCommands {
                     break;
                 case "3":
                     BookingCommand.searchFlight(user_id);
+
                     break;
                 case "4":
                     MenuBooking.showBookings(user_id);
@@ -37,6 +40,7 @@ public class BookingPageCommands {
                     MenuBooking.showBookings(user_id);
                     break;
                 case "6":
+                    bookingController.saveInFile();
                     b = false;
                     break;
                 default:

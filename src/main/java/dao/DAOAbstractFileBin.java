@@ -56,6 +56,11 @@ public class DAOAbstractFileBin<A extends Identifiable> implements DAO<A> {
         write(as);
     }
 
+    @Override
+    public void update(A a, long id){
+        throw new IllegalArgumentException("");
+    }
+
     private void write(Collection<A> as) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
             oos.writeObject(as);

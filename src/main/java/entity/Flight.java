@@ -13,7 +13,7 @@ public class Flight implements Serializable, Identifiable {
     final String destination;
     final String date;
     final String time;
-    final int seats;
+    private int seats;
 
     private static final long serialVersionUID = 1L;
 
@@ -57,6 +57,14 @@ public class Flight implements Serializable, Identifiable {
     }
 
     public String getTime() { return time; }
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
 
     @Override
     public String toString() {

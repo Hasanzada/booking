@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class LoginCommands {
 
     private static final Scanner sc = new Scanner(System.in);
-    private static final UserController userController = new UserController();
+    private static UserController userController = UserController.getInstance();
 
     public static void logIn() {
         System.out.println("Username: ");
@@ -29,6 +29,7 @@ public class LoginCommands {
 
     public static void createAccount() {
         long user_id = userController.users().size() + 1;
+        System.out.println("userid "+user_id);
         User user = new User(user_id, getUsername(), getPassword());
         userController.addUser(user);
         MenuLogIn.successfullyCreatedLogin();

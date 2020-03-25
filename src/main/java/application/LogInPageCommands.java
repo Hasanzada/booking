@@ -3,13 +3,15 @@ package application;
 import console.MenuLogIn;
 import controller.BookingController;
 import controller.FlightController;
+import controller.UserController;
 
 import java.util.Scanner;
 
 public class LogInPageCommands {
 
-    private static FlightController flightController = new FlightController();
-    private static BookingController bookingController = new BookingController();
+    private static FlightController flightController = FlightController.getInstance();
+    private static BookingController bookingController = BookingController.getInstance();
+    private static UserController userController = UserController.getInstance();
     private static final Scanner sc = new Scanner(System.in);
 
     public static void commands() {
@@ -27,6 +29,9 @@ public class LogInPageCommands {
                     LoginCommands.createAccount();
                     break;
                 case "3":
+                    userController.saveInFile();
+                    flightController.saveInFile();
+                    bookingController.saveInFile();
                     b = false;
                     break;
                 default:
