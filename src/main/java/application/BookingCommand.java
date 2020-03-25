@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class BookingCommand {
 
     private static FlightController flightController = FlightController.getInstance();
+    private static BookingController bookingController = BookingController.getInstance();
 
     public static void searchFlight(long user_id) {
         Scanner sc = new Scanner(System.in);
@@ -22,7 +23,7 @@ public class BookingCommand {
         System.out.println("enter date");
         String sdate = sc.nextLine();
         System.out.println("ticket count");
-        while (!sc.hasNextInt()){
+        while (!sc.hasNextInt()) {
             System.out.println("enter a number not letters, ticket count:");
             sc.next();
         }
@@ -36,6 +37,7 @@ public class BookingCommand {
             Booking booking = orderBooking(sc.nextInt(), ticket_count, user_id);
             if (booking != null) {
                 BookingController bookingController = BookingController.getInstance();
+                System.out.println("book id " + booking.getId());
                 bookingController.addBooking(booking);
                 MenuBooking.showBookingAccepted();
             }
@@ -62,8 +64,9 @@ public class BookingCommand {
                 passengers.add(new Passenger(p_id++, name, surname));
             }
             flightController.updateFlight(flight_id, ticket_count);
+            int id = bookingController.getAllBookingBy(user_id).size() + 1;
 
-            return new Booking(passengers, flight_id, user_id);
+            return new Booking(id, passengers, flight_id, user_id);
         } else {
             return null;
         }
@@ -78,7 +81,7 @@ public class BookingCommand {
         }
         int id = sc.nextInt();
         BookingController bookingController = BookingController.getInstance();
-        System.out.println(bookingController.deleteBooking(id,user_id)? "cancelled successfully":"there is no booking with that id");
+        System.out.println(bookingController.deleteBooking(id, user_id) ? "cancelled successfully" : "there is no booking with that id");
     }
 
     public static void showFlight() {

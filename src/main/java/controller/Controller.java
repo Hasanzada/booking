@@ -1,6 +1,5 @@
 package controller;
 
-import application.BookingPageCommands;
 import application.LogInPageCommands;
 
 public class Controller {

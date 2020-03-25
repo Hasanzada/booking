@@ -4,10 +4,7 @@ import entity.Flight;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 
 public class Utils {
     public static String getRandomCountry() {
@@ -24,7 +21,7 @@ public class Utils {
                 LocalDateTime.now()
                         .plusHours((int) (Math.random() * 72 + 1))
                         .format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
-                String.format("%02d:%02d",(int)(Math.random()*24),(int)(Math.random()*4)*15),
+                String.format("%02d:%02d", (int) (Math.random() * 24), (int) (Math.random() * 4) * 15),
                 generateRandomNumber());
         return flight;
     }

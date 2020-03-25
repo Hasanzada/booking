@@ -17,6 +17,7 @@ public class BookingPageCommands {
     public static void commands(long user_id) {
         MenuBooking.showMenu();
         flightController.genearate();
+        bookingController.genearate();
         boolean b = true;
         while (b) {
             String decision = sc.nextLine();

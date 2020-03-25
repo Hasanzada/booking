@@ -2,14 +2,10 @@ package service;
 
 import dao.DAO;
 import dao.DAOAbstractFileBin;
-import dao.DAOMemory;
-import entity.Flight;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class ServiceAbstract<A> implements Service<A> {
 

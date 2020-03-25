@@ -2,7 +2,6 @@ package console;
 
 import controller.BookingController;
 import controller.FlightController;
-import entity.Booking;
 import entity.Flight;
 
 import java.util.Collection;
@@ -45,14 +44,6 @@ public class MenuBooking {
         }
     }
 
-    public static void showSerchedBooking() {
-        builder.delete(0, builder.length());
-        builder.append("==========================\n");
-        builder.append("| select your flight     |\n");
-        builder.append("==========================\n");
-        System.out.println(builder.toString());
-    }
-
     public static void showSelectedBooking() {
         builder.delete(0, builder.length());
         builder.append("==========================\n");
@@ -62,8 +53,7 @@ public class MenuBooking {
     }
 
     public static void showBookings(long user_id) {
-        Collection<Booking> all = bookingController.getAllBookingBy(user_id);
-        all.forEach(p -> System.out.println(p));
+        bookingController.getAllBookingBy(user_id).forEach(System.out::println);
     }
 
     public static void showSelectedFlights() {

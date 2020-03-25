@@ -2,7 +2,6 @@ package service;
 
 import dao.DAO;
 import dao.DAOMemory;
-import dao.Identifiable;
 
 import java.util.Collection;
 import java.util.Map;
@@ -11,7 +10,7 @@ import java.util.function.Predicate;
 
 public class ServiceMemory<A> implements Service<A> {
 
-    private DAO<A>dao;
+    private DAO<A> dao;
     public ServiceMemory(Map<Long,A> list){
         dao = new DAOMemory(list);
     }

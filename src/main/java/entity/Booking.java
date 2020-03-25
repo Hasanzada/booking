@@ -20,6 +20,13 @@ public class Booking implements Identifiable, Serializable {
         this.user_id = user_id;
     }
 
+    public Booking(long id, List<Passenger> passengers, long flight_id, long user_id) {
+        this.id = id;
+        this.passengers = passengers;
+        this.flight_id = flight_id;
+        this.user_id = user_id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -56,7 +56,9 @@ public class Flight implements Serializable, Identifiable {
         return date;
     }
 
-    public String getTime() { return time; }
+    public String getTime() {
+        return time;
+    }
 
     public int getSeats() {
         return seats;

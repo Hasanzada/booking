@@ -14,43 +14,35 @@ public class BookingController {
 
     private static BookingController single_instance = null;
 
-    public static BookingController getInstance()
-    {
+    public static BookingController getInstance() {
         if (single_instance == null)
             single_instance = new BookingController();
         return single_instance;
     }
-    private File file = new File("booking.bin");
+
     private Map<Long, Booking> bookings = new HashMap<>();
     private Service<Booking> service = new ServiceAbstract("booking.bin");
     private Service<Booking> service_memory = new ServiceMemory<>(bookings);
 
-    public Collection<Booking> getAllBookingBy(long user_id){
-        if(file.exists()){
-            service.getAll().stream().forEach(x->service_memory.create(x));
-            return service_memory.getAllBy(p -> p.getUser_id() == user_id);
-        }else {
-            return service_memory.getAllBy(p -> p.getUser_id() == user_id);
-        }
+    public Collection<Booking> getAllBookingBy(long user_id) {
+        return service_memory.getAllBy(p -> p.getUser_id() == user_id);
     }
 
-    public void saveInFile(){
+    public void saveInFile() {
         service_memory.getAll().stream()
                 .forEach(x -> service.create(x));
     }
 
 
-    public Booking getBook(long id){
+    public Booking getBook(long id) {
         return service_memory.get(id).get();
     }
 
-    public void addBooking(Booking booking){
-        long id = service.getAll().size() + 1;
-        booking.setId(id);
-        service.create(booking);
+    public void addBooking(Booking booking) {
+        service_memory.create(booking);
     }
 
-    public void deleteBooking(long id){
+    public void deleteBooking(long id) {
         service_memory.delete(id);
     }
 
@@ -59,9 +51,15 @@ public class BookingController {
         boolean b = getAllBookingBy(user_id).stream()
                 .anyMatch(p -> p.getId() == id);
         deleteBooking(getAllBookingBy(user_id).stream()
-                .filter(p->p.getId()==id)
+                .filter(p -> p.getId() == id)
                 .findFirst().map(Booking::getId)
                 .orElse(0L));
         return b;
+    }
+
+    public void genearate() {
+        for (Booking booking : service.getAll()) {
+            service_memory.create(booking);
+        }
     }
 }

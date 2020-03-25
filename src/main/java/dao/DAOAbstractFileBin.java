@@ -57,7 +57,7 @@ public class DAOAbstractFileBin<A extends Identifiable> implements DAO<A> {
     }
 
     @Override
-    public void update(A a, long id){
+    public void update(A a, long id) {
         throw new IllegalArgumentException("");
     }
 
