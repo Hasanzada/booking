@@ -2,7 +2,6 @@ package controller;
 
 import entity.User;
 import service.Service;
-import service.ServiceAbstract;
 import service.ServiceMemory;
 
 import java.io.File;
@@ -21,20 +20,22 @@ public class UserController {
     }
 
     private Map<Long, User> users = new HashMap<>();
-
-    private Service<User> service = new ServiceAbstract("users.bin");
-    private Service<User> service_user = new ServiceMemory<>(users);
+    File file = new File("users.bin");
+    private Service<User> service = new ServiceMemory(file.getName(),users);
+    //private Service<User> service_user = new ServiceMemory();
 
     public User getUser(int user_id) {
-        return service_user.get(user_id).get();
+        return service.get(user_id).get();
     }
 
     public Collection<User> users() {
-        File file = new File("users.bin");
         if (file.exists()) {
-            service.getAll().stream().forEach(x -> service_user.create(x));
+            //service.read().stream().forEach(x -> service.create(x));
+            for(User user : service.read().values()){
+                service.create(user);
+            }
         }
-        return service_user.getAll();
+        return service.getAll();
     }
 
     public boolean checkUserByLogin(String login) {
@@ -42,13 +43,12 @@ public class UserController {
     }
 
     public void addUser(User user) {
-        service_user.create(user);
+        service.create(user);
     }
 
     public void saveInFile() {
-        for (User user : users()) {
-            service.create(user);
-        }
+        System.out.println(service.getAll());
+        service.write(users);
     }
 
     public User getUserByNameAndPassword(String username, String password) {

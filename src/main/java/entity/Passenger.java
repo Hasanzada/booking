@@ -8,7 +8,7 @@ public class Passenger implements Serializable {
     final String name;
     final String surname;
 
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 33L;
 
     public Passenger(long id, String name, String surname) {
         this.id = id;

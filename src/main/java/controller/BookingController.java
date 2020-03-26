@@ -2,7 +2,7 @@ package controller;
 
 import entity.Booking;
 import service.Service;
-import service.ServiceAbstract;
+
 import service.ServiceMemory;
 
 import java.io.File;
@@ -20,30 +20,30 @@ public class BookingController {
         return single_instance;
     }
 
+    private File file = new File("bookings.bin");
     private Map<Long, Booking> bookings = new HashMap<>();
-    private Service<Booking> service = new ServiceAbstract("booking.bin");
-    private Service<Booking> service_memory = new ServiceMemory<>(bookings);
+    private Service<Booking> service = new ServiceMemory(file.getName(),bookings);
+
 
     public Collection<Booking> getAllBookingBy(long user_id) {
-        return service_memory.getAllBy(p -> p.getUser_id() == user_id);
+        return service.getAllBy(p -> p.getUser_id() == user_id);
     }
 
     public void saveInFile() {
-        service_memory.getAll().stream()
-                .forEach(x -> service.create(x));
+        service.write(bookings);
     }
 
 
     public Booking getBook(long id) {
-        return service_memory.get(id).get();
+        return service.get(id).get();
     }
 
     public void addBooking(Booking booking) {
-        service_memory.create(booking);
+        service.create(booking);
     }
 
     public void deleteBooking(long id) {
-        service_memory.delete(id);
+        service.delete(id);
     }
 
 
@@ -58,8 +58,11 @@ public class BookingController {
     }
 
     public void genearate() {
-        for (Booking booking : service.getAll()) {
-            service_memory.create(booking);
+        if(file.exists()) {
+            for (Booking booking : service.read().values()) {
+                service.create(booking);
+            }
         }
+
     }
 }

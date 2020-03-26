@@ -6,13 +6,13 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class Booking implements Identifiable, Serializable {
+public class Booking implements Serializable,Identifiable {
     private long id;
     final List<Passenger> passengers;
     final long flight_id;
     long user_id;
 
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 44L;
 
     public Booking(List<Passenger> passengers, long flight_id, long user_id) {
         this.passengers = passengers;

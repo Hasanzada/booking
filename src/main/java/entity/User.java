@@ -10,7 +10,7 @@ public class User implements Serializable, Identifiable {
     private final String login;
     private final String password;
 
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 22L;
 
     public User(long id, String login, String password) {
         this.id = id;

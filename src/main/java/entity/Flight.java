@@ -15,7 +15,7 @@ public class Flight implements Serializable, Identifiable {
     final String time;
     private int seats;
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 11L;
 
     public Flight(long id, String city, String destination, String date, String time, int seats) {
         this.id = id;

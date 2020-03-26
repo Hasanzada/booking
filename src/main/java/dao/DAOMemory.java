@@ -1,18 +1,16 @@
 package dao;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
+import java.io.Serializable;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class DAOMemory<A extends Identifiable> implements DAO<A> {
 
-    private Map<Long, A> storage;
+    private final Map<Long, A> storage;
 
-    public DAOMemory(Map<Long, A> list) {
-        storage = list;
+    public DAOMemory(Map<Long, A> map){
+        storage = map;
     }
 
     @Override

@@ -31,9 +31,8 @@ class ServiceAbstractTest {
     void setUp() {
         passengers = new ArrayList<>();
         file = new File("test2.bin");
-        flightService = new ServiceAbstract<>(file.getPath());
-        bookingService = new ServiceAbstract<>(file.getPath());
-        userService = new ServiceAbstract<>(file.getPath());
+        /*flightService = new ServiceMemory<>(file.getPath());
+        bookingService = new ServiceMemory<>(file.getPath());*/
 
         user = new User(1, "abcde","12345");
         passenger = new Passenger(1, "Zara", "Larsson");

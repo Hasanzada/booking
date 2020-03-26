@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+/*
 public class ServiceAbstract<A> implements Service<A> {
 
     DAO<A> dao;
@@ -45,4 +46,15 @@ public class ServiceAbstract<A> implements Service<A> {
 
     }
 
-}
+    @Override
+    public void write(Collection<A> aCollection) {
+
+    }
+
+    @Override
+    public Collection<A> read() {
+        return null;
+    }
+*/
+
+//}
