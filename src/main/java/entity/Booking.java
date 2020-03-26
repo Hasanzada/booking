@@ -8,8 +8,8 @@ import java.util.Objects;
 
 public class Booking implements Serializable,Identifiable {
     private long id;
-    final List<Passenger> passengers;
-    final long flight_id;
+    private List<Passenger> passengers;
+    private long flight_id;
     long user_id;
 
     private static final long serialVersionUID = 44L;
@@ -50,6 +50,22 @@ public class Booking implements Serializable,Identifiable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
+    }
+
+    public long getFlight_id() {
+        return flight_id;
+    }
+
+    public void setFlight_id(long flight_id) {
+        this.flight_id = flight_id;
     }
 
     public long getUser_id() {

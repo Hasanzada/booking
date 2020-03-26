@@ -39,9 +39,16 @@ public class FlightController {
         }
     }
 
-    public void updateFlight(long id, int ticket_count) {
+    public void updateFlightafterBooking(long id, int ticket_count) {
         Flight flight = service.get(id).get();
         flight.setSeats(flight.getSeats() - ticket_count);
+        service.update(flight, id);
+        saveInFile();
+    }
+
+    public void updateFlightafterCancel(long id, int ticket_count) {
+        Flight flight = service.get(id).get();
+        flight.setSeats(flight.getSeats() + ticket_count);
         service.update(flight, id);
         saveInFile();
     }

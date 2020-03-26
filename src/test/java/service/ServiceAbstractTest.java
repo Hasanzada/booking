@@ -8,10 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,9 +27,10 @@ class ServiceAbstractTest {
     @BeforeEach
     void setUp() {
         passengers = new ArrayList<>();
-        file = new File("test2.bin");
-        /*flightService = new ServiceMemory<>(file.getPath());
-        bookingService = new ServiceMemory<>(file.getPath());*/
+        file = new File("test.bin");
+        flightService = new ServiceMemory<>(file.getPath(), new HashMap<>());
+        bookingService = new ServiceMemory<>(file.getPath(), new HashMap<>());
+        userService = new ServiceMemory<>(file.getPath(), new HashMap<>());
 
         user = new User(1, "abcde","12345");
         passenger = new Passenger(1, "Zara", "Larsson");
@@ -101,7 +99,7 @@ class ServiceAbstractTest {
         flightCollection.add(flight2);
         flightService.create(flight);
         flightService.create(flight2);
-        assertEquals(flightCollection, flightService.getAll());
+        assertEquals(true, flightService.getAll().containsAll(flightCollection));
     }
 
     @Test
@@ -113,7 +111,7 @@ class ServiceAbstractTest {
         flightCollection.add(flight3);
         flightService.create(flight);
         flightService.create(flight3);
-        assertEquals(flightCollection, flightService.getAll());
+        assertEquals(true, flightService.getAll().containsAll(flightCollection));
     }
 
     @Test
@@ -123,7 +121,7 @@ class ServiceAbstractTest {
         Collection<Flight> flightCollection = new ArrayList<>();
         flightCollection.add(flight3);
         flightService.create(flight3);
-        assertEquals(flightCollection, flightService.getAll());
+        assertEquals(true, flightService.getAll().containsAll(flightCollection));
     }
 
     @Test
@@ -132,7 +130,7 @@ class ServiceAbstractTest {
         Collection<Flight> flightCollection = new ArrayList<>();
         flightCollection.add(flight);
         flightService.create(flight);
-        assertEquals(flightCollection, flightService.getAll());
+        assertEquals(true, flightService.getAll().containsAll(flightCollection));
     }
 
     @Test
@@ -145,7 +143,7 @@ class ServiceAbstractTest {
         bookings.add(booking2);
         bookingService.create(booking);
         bookingService.create(booking2);
-        assertEquals(bookings, bookingService.getAll());
+        assertEquals(true, bookingService.getAll().containsAll(bookings));
     }
 
     @Test
@@ -156,7 +154,7 @@ class ServiceAbstractTest {
         Collection<Booking> bookings = new ArrayList<>();
         bookings.add(booking2);
         bookingService.create(booking2);
-        assertEquals(bookings, bookingService.getAll());
+        assertEquals(true, bookingService.getAll().containsAll(bookings));
     }
 
     @Test
@@ -168,7 +166,7 @@ class ServiceAbstractTest {
         bookings.add(booking2);
         bookingService.create(booking2);
         bookingService.create(booking2);
-        assertEquals(bookings, bookingService.getAll());
+        assertEquals(true, bookingService.getAll().containsAll(bookings));
     }
 
     @Test
@@ -177,7 +175,7 @@ class ServiceAbstractTest {
         Collection<User> users = new ArrayList<>();
         users.add(user);
         userService.create(user);
-        assertEquals(users, userService.getAll());
+        assertEquals(true, userService.getAll().containsAll(users));
     }
 
     @Test
@@ -189,7 +187,7 @@ class ServiceAbstractTest {
         users.add(user2);
         userService.create(user);
         userService.create(user2);
-        assertEquals(users, userService.getAll());
+        assertEquals(true, userService.getAll().containsAll(users));
     }
 
     @Test
@@ -247,7 +245,7 @@ class ServiceAbstractTest {
         flightService.create(flight1);
         flightService.create(flight2);
         flightService.create(flight3);
-        assertEquals(flights, flightService.getAll());
+        assertEquals(true, flightService.getAll().containsAll(flights));
     }
 
     @Test
@@ -285,7 +283,7 @@ class ServiceAbstractTest {
         bookingService.create(booking);
         bookingService.create(booking2);
         bookingService.create(booking3);
-        assertEquals(bookings,bookingService.getAll());
+        assertEquals(true,bookingService.getAll().containsAll(bookings));
     }
 
     @Test
@@ -339,6 +337,6 @@ class ServiceAbstractTest {
         bookingService.create(booking2);
         bookingService.create(booking3);
         bookingService.delete(2);
-        assertEquals(bookings,bookingService.getAll());
+        assertEquals(true,bookingService.getAll().containsAll(bookings));
     }
 }

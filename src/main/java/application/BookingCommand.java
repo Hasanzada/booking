@@ -63,7 +63,7 @@ public class BookingCommand {
                 String surname = sc.nextLine();
                 passengers.add(new Passenger(p_id++, name, surname));
             }
-            flightController.updateFlight(flight_id, ticket_count);
+            flightController.updateFlightafterBooking(flight_id, ticket_count);
             int id = bookingController.getAllBookingBy(user_id).size() + 1;
 
             return new Booking(id, passengers, flight_id, user_id);
@@ -80,8 +80,9 @@ public class BookingCommand {
             sc.next();
         }
         int id = sc.nextInt();
-        BookingController bookingController = BookingController.getInstance();
+        Booking booking = bookingController.getBook(id);
         System.out.println(bookingController.deleteBooking(id, user_id) ? "cancelled successfully" : "there is no booking with that id");
+        flightController.updateFlightafterCancel(booking.getFlight_id(), booking.getPassengers().size());
     }
 
     public static void showFlight() {

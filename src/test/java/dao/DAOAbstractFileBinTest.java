@@ -8,10 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,14 +22,16 @@ class DAOAbstractFileBinTest {
     User user;
     Passenger passenger;
     List<Passenger> passengers = new ArrayList<>();
-    File file ;
+    Map<Long, Flight> flightMap = new HashMap<>();
+    Map<Long, User> userMap = new HashMap<>();
+    Map<Long, Booking> bookingMap = new HashMap<>();
+
 
     @BeforeEach
     public void init(){
-        file = new File("test.bin");
-        daoFlight = new DAOAbstractFileBin<>(file.getPath());
-        daoBooking = new DAOAbstractFileBin<>(file.getPath());
-        daoUser = new DAOAbstractFileBin<>(file.getPath());
+        daoFlight = new DAOMemory<>(flightMap);
+        daoBooking = new DAOMemory<>(bookingMap);
+        daoUser = new DAOMemory<>(userMap);
 
         passenger = new Passenger(1,"John","Snow");
         passengers.add(passenger);
@@ -53,13 +52,12 @@ class DAOAbstractFileBinTest {
         daoFlight.create(flight);
         daoFlight.create(new Flight(2,"IZMIR","PEKIN","10-10-2020", "20:00", 65));
 
-        assertEquals(flights, (List<Flight>)daoFlight.getAll());
-        file.delete();
+        assertEquals(true, flights.containsAll(daoFlight.getAll()));
+
     }
 
     @Test
     void getAllBy() {
-        file.delete();
         List<Flight> flights = new ArrayList<>();
         flights.add(new Flight(2,"IZMIR","PEKIN","10-10-2020", "20:00", 65));
         flights.add(new Flight(3,"TEBRIZ","PEKIN","10-10-2020", "20:00", 75));
@@ -74,15 +72,12 @@ class DAOAbstractFileBinTest {
 
     @Test
     void get() {
-        file.delete();
         daoFlight.create(flight);
         assertEquals(flight, daoFlight.get(1).get());
 
-        file.delete();
         daoBooking.create(booking);
         assertEquals(booking, daoBooking.get(1).get());
 
-        file.delete();
         daoUser.create(user);
         assertEquals(user,daoUser.get(1).get());
 
@@ -90,35 +85,29 @@ class DAOAbstractFileBinTest {
 
     @Test
     void create() {
-        file.delete();
         daoFlight.create(flight);
-        List<Flight> flights = (List<Flight>) daoFlight.getAll();
-        assertEquals(flight.getId(), flights.get(0).getId());
+        Collection<Flight> flights =  daoFlight.getAll();
+        assertEquals(true, !flights.isEmpty());
 
-        file.delete();
         daoBooking.create(booking);
-        List<Booking> bookings = (List<Booking>) daoBooking.getAll();
-        assertEquals(booking.getId(), bookings.get(0).getId());
+        Collection<Booking> bookings = daoBooking.getAll();
+        assertEquals(true, !flights.isEmpty());
 
-        file.delete();
         daoUser.create(user);
-        List<User> users = (List<User>) daoUser.getAll();
-        assertEquals(user.getLogin(), users.get(0).getLogin());
+        Collection<User> users = daoUser.getAll();
+        assertEquals(true, !flights.isEmpty());
     }
 
     @Test
     void delete() {
-        file.delete();
         daoFlight.create(new Flight(2,"ISTANBUL","MOSKVA","10-10-2020", "20:00", 55));
         daoFlight.delete(2);
         assertEquals(Optional.empty(), daoFlight.get(2));
 
-        file.delete();
         daoBooking.create(new Booking(passengers,1,4));
         daoBooking.delete(2);
         assertEquals(Optional.empty(), daoBooking.get(2));
 
-        file.delete();
         daoUser.create(new User(2,"Abrahm","admin123"));
         daoUser.delete(2);
         assertEquals(Optional.empty(), daoUser.get(2));

@@ -1,6 +1,7 @@
 package controller;
 
 import entity.Booking;
+import entity.User;
 import service.Service;
 
 import service.ServiceMemory;
@@ -62,7 +63,8 @@ public class BookingController {
             for (Booking booking : service.read().values()) {
                 service.create(booking);
             }
-        }
+        }else
+            service.getAll();
 
     }
 }
