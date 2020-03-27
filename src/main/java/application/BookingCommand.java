@@ -38,7 +38,6 @@ public class BookingCommand {
             Booking booking = orderBooking(sc.nextInt(), ticket_count, user_id, city, sdate);
             if (booking != null) {
                 BookingController bookingController = BookingController.getInstance();
-                System.out.println("book id " + booking.getId());
                 bookingController.addBooking(booking);
                 MenuBooking.showBookingAccepted();
             }
