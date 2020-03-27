@@ -4,6 +4,7 @@ import console.MenuBooking;
 import controller.BookingController;
 import controller.FlightController;
 import entity.Booking;
+import entity.Flight;
 import entity.Passenger;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class BookingCommand {
                 System.out.println("enter a number 1-2");
                 sc.next();
             }
-            Booking booking = orderBooking(sc.nextInt(), ticket_count, user_id);
+            Booking booking = orderBooking(sc.nextInt(), ticket_count, user_id, city, sdate);
             if (booking != null) {
                 BookingController bookingController = BookingController.getInstance();
                 System.out.println("book id " + booking.getId());
@@ -44,9 +45,9 @@ public class BookingCommand {
         }
     }
 
-    public static Booking orderBooking(int k, int ticket_count, long user_id) {
-        int p_id = 1;
+    public static Booking orderBooking(int k, int ticket_count, long user_id, String city, String sdate) {
         if (k == 1) {
+            int p_id = 1;
             System.out.println("Enter flight id");
             Scanner sc = new Scanner(System.in);
             while (!sc.hasNextInt()) {
@@ -54,22 +55,32 @@ public class BookingCommand {
                 sc.next();
             }
             int flight_id = sc.nextInt();
-            List<Passenger> passengers = new ArrayList<>();
-            for (int i = 0; i < ticket_count; i++) {
-                sc = new Scanner(System.in);
-                System.out.printf("enter %d.passenger name: ", i + 1);
-                String name = sc.nextLine();
-                System.out.printf("enter %d.passenger surname: ", i + 1);
-                String surname = sc.nextLine();
-                passengers.add(new Passenger(p_id++, name, surname));
-            }
-            flightController.updateFlightafterBooking(flight_id, ticket_count);
-            int id = bookingController.getAllBookingBy(user_id).size() + 1;
+            Flight flight = flightController.getFlight(flight_id);
+            if(flight.getSeats() == 0){
+                System.out.println("all seats already reserved search another flight");
+                searchFlight(user_id);
+                throw new IllegalArgumentException("something get wrong");
+            }else if(flight.getSeats() < ticket_count){
+                System.out.println("not enough seats reserve again");
+                searchFlight(user_id);
+                throw new IllegalArgumentException("something get wrong");
+            }else {
+                List<Passenger> passengers = new ArrayList<>();
+                for (int i = 0; i < ticket_count; i++) {
+                    sc = new Scanner(System.in);
+                    System.out.printf("enter %d.passenger name: ", i + 1);
+                    String name = sc.nextLine();
+                    System.out.printf("enter %d.passenger surname: ", i + 1);
+                    String surname = sc.nextLine();
+                    passengers.add(new Passenger(p_id++, name, surname));
+                }
 
-            return new Booking(id, passengers, flight_id, user_id);
-        } else {
-            return null;
-        }
+                flightController.updateFlightafterBooking(flight_id, ticket_count);
+                int id = bookingController.getAllBookingBy(user_id).size() + 1;
+                return new Booking(id, passengers, flight_id, user_id);
+            }
+        }else
+            throw new IllegalArgumentException("something get wrong");
     }
 
     public static void deleteBooking(long user_id) {

@@ -30,10 +30,10 @@ public class UserController {
 
     public Collection<User> users() {
         if (file.exists()) {
-            //service.read().stream().forEach(x -> service.create(x));
-            for(User user : service.read().values()){
+            service.read().values().stream().forEach(x -> service.create(x));
+            /*for(User user : service.read().values()){
                 service.create(user);
-            }
+            }*/
         }
         return service.getAll();
     }
@@ -47,7 +47,6 @@ public class UserController {
     }
 
     public void saveInFile() {
-        System.out.println(service.getAll());
         service.write(users);
     }
 

@@ -30,7 +30,6 @@ public class BookingPageCommands {
                     break;
                 case "3":
                     BookingCommand.searchFlight(user_id);
-
                     break;
                 case "4":
                     MenuBooking.showBookings(user_id);
